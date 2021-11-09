@@ -26,7 +26,7 @@ Small Dmytro Danylov course exercise to build an activities recorder using React
   | |-Recorder/     - timer
   | |-redux/        - redux
   |-lib/          - utils
-|-index.tsx       - entry file
+  |-index.tsx       - entry file
 
 ```
 
