@@ -5,7 +5,7 @@ Small Dmytro Danylov course exercise to build an activities recorder using React
 ## Features:
 
 - [x] Timer to measure activities duration;
-- [x] Organizing activities by day;
+- [x] Organize activities by day;
 - [x] Change activities names;
 - [x] Delete activities;
 
@@ -23,7 +23,7 @@ Small Dmytro Danylov course exercise to build an activities recorder using React
   |-components/   - main components to be shared with each style
   | |-App/          - container component
   | |-Calendar/     - calendar component to display activities by day
-  | |-Recorder/     - Timer
+  | |-Recorder/     - timer
   | |-redux/        - redux
   |-lib/          - utils
 |-index.tsx       - entry file
