@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { deleteUserEvent, UserEvent, updateUserEvent } from '../redux/user-events';
+import { deleteUserEvent, UserEvent, updateUserEvent } from '../store/user-events';
 import { useDispatch } from 'react-redux';
 
 interface Props {

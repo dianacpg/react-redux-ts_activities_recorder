@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDateStart, start, stop } from '../redux/recorder';
+import { selectDateStart, start, stop } from '../store/recorder';
 import cx from 'classnames';
 import './Recorder.css';
 import { addZero } from '../../lib/utils';
-import { createUserEvent } from '../redux/user-events'
+import { createUserEvent } from '../store/user-events'
 
 const Recorder = () => {
   const dispatch = useDispatch();
@@ -47,7 +47,6 @@ const Recorder = () => {
         <span></span>
       </button>
       <div className="recorder-counter">
-        {' '}
         {addZero(hours)}:{addZero(minutes)}:{addZero(seconds)}
       </div>
     </div>
