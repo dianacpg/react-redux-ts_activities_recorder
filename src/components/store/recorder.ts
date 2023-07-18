@@ -1,5 +1,6 @@
 import { Action } from 'redux';
 import { RootState } from './store';
+import { createReducer } from '@reduxjs/toolkit';
 
 interface RecorderState {
   dateStart: string;
@@ -27,18 +28,9 @@ const initialState: RecorderState = {
   dateStart: '',
 };
 
-const recorderReducer = (
-  state: RecorderState = initialState,
-  action: StartAction | StopAction
-) => {
-  switch (action.type) {
-    case START:
-      return { ...state, dateStart: new Date().toISOString() };
-    case STOP:
-      return { ...state, dateStart: '' };
-    default:
-      return state;
-  }
-};
+const recorder = createReducer(initialState, {
+  [START]: (state) => ({ ...state, dateStart: new Date().toISOString() }),
+  [STOP]: (state) => ({ ...state, dateStart: '' }),
+});
 
-export default recorderReducer;
+export default recorder;

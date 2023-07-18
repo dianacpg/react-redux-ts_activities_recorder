@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import './Calendar.css';
-import { RootState } from '../redux/store';
-import { selectUserEventsArray, loadUserEvents, UserEvent } from '../redux/user-events';
+import { RootState } from '../store/store';
+import { selectUserEventsArray, loadUserEvents, UserEvent } from '../store/user-events';
 import { addZero } from '../../lib/utils';
 import EventItem from './EventItem';
 
