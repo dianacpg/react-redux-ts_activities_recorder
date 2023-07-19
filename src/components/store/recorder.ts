@@ -1,36 +1,24 @@
-import { Action } from 'redux';
 import { RootState } from './store';
-import { createReducer } from '@reduxjs/toolkit';
-
+import { createAction, createReducer } from '@reduxjs/toolkit';
 interface RecorderState {
   dateStart: string;
 }
-
-const START = 'recorder/start';
-const STOP = 'recorder/stop';
-
-type StartAction = Action<typeof START>;
-type StopAction = Action<typeof STOP>;
-
-export const start = (): StartAction => ({
-  type: START,
-});
-
-export const stop = (): StopAction => ({
-  type: STOP,
-});
-
-export const selectRecorderState = (rootState: RootState) => rootState.recorder;
-export const selectDateStart = (rootState: RootState) =>
-  selectRecorderState(rootState).dateStart;
 
 const initialState: RecorderState = {
   dateStart: '',
 };
 
-const recorder = createReducer(initialState, {
-  [START]: (state) => ({ ...state, dateStart: new Date().toISOString() }),
-  [STOP]: (state) => ({ ...state, dateStart: '' }),
+export const startRecorder = createAction('recorder/start');
+export const stopRecorder = createAction('recorder/stop');
+
+export const recorderReducer = createReducer(initialState, (builder) => {
+  builder.addCase(startRecorder, (state) => {
+    state.dateStart = new Date().toISOString();
+  });
+  builder.addCase(stopRecorder, () => initialState);
 });
 
-export default recorder;
+export const selectRecorderState = (rootState: RootState) => rootState.recorder;
+
+export const selectDateStart = (rootState: RootState) =>
+  selectRecorderState(rootState).dateStart;
