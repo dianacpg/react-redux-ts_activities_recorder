@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDateStart, start, stop } from '../store/recorder';
+import  { selectDateStart, startRecorder, stopRecorder } from '../store/recorder';
 import cx from 'classnames';
 import './Recorder.css';
 import { addZero } from '../../lib/utils';
@@ -17,9 +17,9 @@ const Recorder = () => {
     if (started) {
       window.clearInterval(interval.current);
       dispatch(createUserEvent());
-      dispatch(stop());
+      dispatch(startRecorder);
     } else {
-      dispatch(start());
+      dispatch(stopRecorder);
       interval.current = window.setInterval(() => {
         setCount((count) => count + 1);
       }, 1000);
