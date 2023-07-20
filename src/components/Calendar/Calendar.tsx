@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import './Calendar.css';
-import { RootState } from '../store/store';
+import { AppState } from '../store/store';
 import { selectUserEventsArray, loadUserEvents, UserEvent } from '../store/user-events';
 import { addZero } from '../../lib/utils';
 import EventItem from './EventItem';
 
-const mapState = (state: RootState) => ({
+const mapState = (state: AppState) => ({
   events: selectUserEventsArray(state)
 })
 

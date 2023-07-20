@@ -1,6 +1,6 @@
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
-import { RootState } from './store';
+import { AppState } from './store';
 import { selectDateStart } from './recorder';
 import { createReducer } from '@reduxjs/toolkit';
 
@@ -37,7 +37,7 @@ interface LoadFailureAction extends Action<typeof LOAD_FAILURE> {
 export const loadUserEvents =
   (): ThunkAction<
     void,
-    RootState,
+    AppState,
     undefined,
     LoadRequestAction | LoadSuccessAction | LoadFailureAction
   > =>
@@ -81,7 +81,7 @@ interface CreateFailureAction extends Action<typeof CREATE_FAILURE> {}
 export const createUserEvent =
   (): ThunkAction<
     Promise<void>,
-    RootState,
+    AppState,
     undefined,
     CreateRequestAction | CreateSuccessAction | CreateFailureAction
   > =>
@@ -138,7 +138,7 @@ export const deleteUserEvent =
     id: UserEvent['id']
   ): ThunkAction<
     Promise<void>,
-    RootState,
+    AppState,
     undefined,
     DeleteRequestAction | DeleteSuccessAction | DeleteFailureAction
   > =>
@@ -182,7 +182,7 @@ export const updateUserEvent =
     event: UserEvent
   ): ThunkAction<
     Promise<void>,
-    RootState,
+    AppState,
     undefined,
     UpdateRequestAction | UpdateSuccessAction | UpdateFailureAction
   > =>
@@ -209,10 +209,10 @@ export const updateUserEvent =
     }
   };
 
-const selectUserEventsState = (rootState: RootState) => rootState.userEvents;
+const selectUserEventsState = (AppState: AppState) => AppState.userEvents;
 
-export const selectUserEventsArray = (rootState: RootState) => {
-  const state = selectUserEventsState(rootState);
+export const selectUserEventsArray = (AppState: AppState) => {
+  const state = selectUserEventsState(AppState);
   return state.allIds.map((id) => state.byIds[id]);
 };
 

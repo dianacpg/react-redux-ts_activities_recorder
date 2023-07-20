@@ -1,4 +1,4 @@
-import { RootState } from './store';
+import { AppState } from './store';
 import { createAction, createReducer } from '@reduxjs/toolkit';
 interface RecorderState {
   dateStart: string;
@@ -18,7 +18,7 @@ export const recorderReducer = createReducer(initialState, (builder) => {
   builder.addCase(stopRecorder, () => initialState);
 });
 
-export const selectRecorderState = (rootState: RootState) => rootState.recorder;
+export const selectRecorderState = (AppState: AppState) => AppState.recorder;
 
-export const selectDateStart = (rootState: RootState) =>
-  selectRecorderState(rootState).dateStart;
+export const selectDateStart = (AppState: AppState) =>
+  selectRecorderState(AppState).dateStart;

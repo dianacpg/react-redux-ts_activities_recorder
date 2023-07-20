@@ -17,9 +17,9 @@ const Recorder = () => {
     if (started) {
       window.clearInterval(interval.current);
       dispatch(createUserEvent());
-      dispatch(startRecorder);
+      dispatch(stopRecorder());
     } else {
-      dispatch(stopRecorder);
+      dispatch(startRecorder());
       interval.current = window.setInterval(() => {
         setCount((count) => count + 1);
       }, 1000);
