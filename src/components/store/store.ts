@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { recorderReducer } from './recorder';
+import { recorderReducer } from './modules/recorder';
 import userEvents from './user-events';
 
 const rootReducer = {

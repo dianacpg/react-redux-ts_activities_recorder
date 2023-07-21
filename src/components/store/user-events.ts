@@ -1,7 +1,7 @@
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
 import { AppState } from './store';
-import { selectDateStart } from './recorder';
+import { selectDateStart } from './modules/recorder';
 import { createReducer } from '@reduxjs/toolkit';
 
 export interface UserEvent {
