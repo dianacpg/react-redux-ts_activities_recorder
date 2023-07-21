@@ -1,5 +1,6 @@
-import { AppState } from './store';
+import { AppState } from '../../store';
 import { createAction, createReducer } from '@reduxjs/toolkit';
+
 interface RecorderState {
   dateStart: string;
 }
