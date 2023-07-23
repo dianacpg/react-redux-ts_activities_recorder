@@ -1,6 +1,6 @@
 # Activities Recorder
 
-Small Dmytro Danylov course exercise to build an activities recorder using React, Redux and Typescript and a fake api server
+WIP
 
 ## Features:
 
@@ -18,17 +18,7 @@ Small Dmytro Danylov course exercise to build an activities recorder using React
 
 ## Project architecture:
 
-```
-|-src/
-  |-components/   - main components to be shared with each style
-  | |-App/          - container component
-  | |-Calendar/     - calendar component to display activities by day
-  | |-Recorder/     - timer
-  | |-redux/        - redux
-  |-lib/          - utils
-  |-index.tsx       - entry file
-
-```
+WIP
 
 ## Setup:
 
