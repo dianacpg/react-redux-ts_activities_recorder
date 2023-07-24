@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { deleteUserEvent, UserEvent, updateUserEvent } from '../store/user-events';
+import { deleteUserEvent, updateUserEvent } from '../store/modules/user-events';
 import { useDispatch } from 'react-redux';
+import { UserEvent } from '../../lib/services';
 
 interface Props {
     event: UserEvent;
