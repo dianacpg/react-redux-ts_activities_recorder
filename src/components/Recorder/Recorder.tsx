@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import  { selectDateStart, startRecorder, stopRecorder } from '../store/recorder';
 import cx from 'classnames';
 import './Recorder.css';
 import { addZero } from '../../lib/utils';
-import { createUserEvent } from '../store/user-events'
+import { selectDateStart, startRecorder, stopRecorder } from '../store/modules/recorder';
+import { createUserEvent } from '../store/modules/user-events';
 
 const Recorder = () => {
   const dispatch = useDispatch();

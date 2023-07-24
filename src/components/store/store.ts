@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { recorderReducer } from './modules/recorder';
-import userEvents from './user-events';
+import { userEventsReducer } from './modules/user-events';
 
 const rootReducer = {
   recorder: recorderReducer,
-  userEvents: userEvents,
+  userEvents: userEventsReducer,
 };
 
 const store = configureStore({

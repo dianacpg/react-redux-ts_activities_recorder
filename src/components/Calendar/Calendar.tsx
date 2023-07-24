@@ -2,16 +2,17 @@ import React, { useEffect } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import './Calendar.css';
 import { AppState } from '../store/store';
-import { selectUserEventsArray, loadUserEvents, UserEvent } from '../store/user-events';
+import { selectUserEventsArray, fetchUserEvents } from '../store/modules/user-events';
 import { addZero } from '../../lib/utils';
 import EventItem from './EventItem';
+import { UserEvent } from '../../lib/services';
 
 const mapState = (state: AppState) => ({
   events: selectUserEventsArray(state)
 })
 
 const mapDispatch = {
-  loadUserEvents
+  fetchUserEvents
 };
 
 const connector = connect(mapState, mapDispatch);
@@ -52,10 +53,10 @@ const groupEventsByDay = (events: UserEvent[]) => {
   return groups;
 }
 
-const Calendar: React.FC<Props> = ({events, loadUserEvents}) => {
+const Calendar: React.FC<Props> = ({events, fetchUserEvents}) => {
 
   useEffect(()=> {
-    loadUserEvents();
+    fetchUserEvents();
   }, [])
 
   let groupedEvents: ReturnType<typeof groupEventsByDay> | undefined;
