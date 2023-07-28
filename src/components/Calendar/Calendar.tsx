@@ -6,6 +6,7 @@ import { selectUserEventsArray, fetchUserEvents } from '../store/modules/user-ev
 import { addZero } from '../../lib/utils';
 import EventItem from './EventItem';
 import { UserEvent } from '../../lib/services';
+import { useAppSelector } from '../store/hooks';
 
 const mapState = (state: AppState) => ({
   events: selectUserEventsArray(state)
@@ -54,6 +55,7 @@ const groupEventsByDay = (events: UserEvent[]) => {
 }
 
 const Calendar: React.FC<Props> = ({events, fetchUserEvents}) => {
+  const userEvents = useAppSelector(state => state.userEvents)
 
   useEffect(()=> {
     fetchUserEvents();
@@ -69,9 +71,10 @@ const Calendar: React.FC<Props> = ({events, fetchUserEvents}) => {
     );
   }
 
-  return groupedEvents && sortedGroupKeys ?  (
+  return (
     <div className="calendar">
-      {sortedGroupKeys.map(dayKey => {
+      {!!userEvents.loading && <p>Loading...</p> }
+      {groupedEvents && sortedGroupKeys && sortedGroupKeys.map(dayKey => {
         const events = groupedEvents![dayKey];
         const groupDate = new Date(dayKey);
         const day = groupDate.getDate();
@@ -92,7 +95,7 @@ const Calendar: React.FC<Props> = ({events, fetchUserEvents}) => {
         )
     })}
     </div>
-    ) : (<p>Loading...</p>)
+    )
 };
 
 export default connector(Calendar);

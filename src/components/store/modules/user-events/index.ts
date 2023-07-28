@@ -2,6 +2,8 @@ import {
   createAsyncThunk,
   createReducer,
   PayloadAction,
+  isPending,
+  isFulfilled,
 } from '@reduxjs/toolkit';
 import { AppState } from '../../store';
 import { selectDateStart } from '../recorder';
@@ -11,6 +13,7 @@ import * as API from '../../../../lib/services';
 export interface UserEventsState {
   byIds: Record<UserEvent['id'], UserEvent>;
   allIds: UserEvent['id'][];
+  loading?: boolean;
 }
 
 const initialState: UserEventsState = { byIds: {}, allIds: [] };
@@ -73,6 +76,7 @@ export const userEventsReducer = createReducer(initialState, (builder) => {
     .addCase(
       fetchUserEvents.fulfilled,
       (state, action: PayloadAction<UserEvent[]>) => {
+        state.loading = false;
         const events = action.payload;
         state.allIds = events.map(({ id }) => id);
         state.byIds = events.reduce<UserEventsState['byIds']>(
@@ -106,7 +110,15 @@ export const userEventsReducer = createReducer(initialState, (builder) => {
         const updatedEvent = action.payload;
         state.byIds[updatedEvent.id] = updatedEvent;
       }
-    );
+    )
+    // Loading start for all pending actions
+    .addMatcher(isPending, (state) => {
+      state.loading = true;
+    })
+    // Loading stop for all fulfilled actions
+    .addMatcher(isFulfilled, (state) => {
+      state.loading = false;
+    });
 });
 
 export const selectUserEventsState = (AppState: AppState) =>

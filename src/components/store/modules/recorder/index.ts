@@ -1,8 +1,14 @@
+import {
+  createAction,
+  createReducer,
+  isPending,
+  isFulfilled,
+} from '@reduxjs/toolkit';
 import { AppState } from '../../store';
-import { createAction, createReducer } from '@reduxjs/toolkit';
 
 interface RecorderState {
   dateStart: string;
+  loading?: boolean;
 }
 
 const initialState: RecorderState = {
@@ -16,7 +22,16 @@ export const recorderReducer = createReducer(initialState, (builder) => {
   builder.addCase(startRecorder, (state) => {
     state.dateStart = new Date().toISOString();
   });
-  builder.addCase(stopRecorder, () => initialState);
+  builder
+    .addCase(stopRecorder, () => initialState)
+    // Loading start for all pending actions
+    .addMatcher(isPending, (state) => {
+      state.loading = true;
+    })
+    // Loading stop for all fulfilled actions
+    .addMatcher(isFulfilled, (state) => {
+      state.loading = false;
+    });
 });
 
 export const selectRecorderState = (AppState: AppState) => AppState.recorder;
