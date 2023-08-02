@@ -1,35 +1,20 @@
 import React, { useEffect } from 'react';
-import { connect, ConnectedProps } from 'react-redux';
 import './Calendar.css';
-import { AppState } from '../store/store';
-import { selectUserEventsArray, fetchUserEvents } from '../store/modules/user-events';
 import { addZero } from '../../lib/utils';
 import EventItem from './EventItem';
 import { UserEvent } from '../../lib/services';
-import { useAppSelector } from '../store/hooks';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { fetchUserEvents } from '../store/modules/user-events';
 
-const mapState = (state: AppState) => ({
-  events: selectUserEventsArray(state)
-})
 
-const mapDispatch = {
-  fetchUserEvents
-};
-
-const connector = connect(mapState, mapDispatch);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-interface Props extends PropsFromRedux {}
-
-const createDateKey = (date: Date) => {
+export const createDateKey = (date: Date) => {
   const year = date.getUTCFullYear();
   const month = date.getUTCMonth() + 1;
   const day = date.getUTCDay();
   return `${year}-${addZero(month) }-${addZero(day)}`;
 }
 
-const groupEventsByDay = (events: UserEvent[]) => {
+export const groupEventsByDay = (events: UserEvent[]) => {
   const groups: Record<string, UserEvent[]> = {};
 
   const addToGroup = (dateKey: string, event: UserEvent) => {
@@ -54,12 +39,11 @@ const groupEventsByDay = (events: UserEvent[]) => {
   return groups;
 }
 
-const Calendar: React.FC<Props> = ({events, fetchUserEvents}) => {
+const Calendar = ():  React.ReactElement => {
+  const dispatch = useAppDispatch()
   const userEvents = useAppSelector(state => state.userEvents)
-
-  useEffect(()=> {
-    fetchUserEvents();
-  }, [])
+  const events = userEvents.allIds.map((id) => userEvents.byIds[id]);
+  
 
   let groupedEvents: ReturnType<typeof groupEventsByDay> | undefined;
   let sortedGroupKeys: string[] | undefined;
@@ -70,6 +54,12 @@ const Calendar: React.FC<Props> = ({events, fetchUserEvents}) => {
       (date1, date2) => +new Date(date2) - +new Date(date1)
     );
   }
+
+  
+useEffect(() => {
+ void dispatch(fetchUserEvents())
+}, [])
+
 
   return (
     <div className="calendar">
@@ -98,4 +88,4 @@ const Calendar: React.FC<Props> = ({events, fetchUserEvents}) => {
     )
 };
 
-export default connector(Calendar);
+export default Calendar;
