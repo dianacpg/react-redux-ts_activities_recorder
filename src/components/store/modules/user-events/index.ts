@@ -120,10 +120,3 @@ export const userEventsReducer = createReducer(initialState, (builder) => {
       state.loading = false;
     });
 });
-
-export const selectUserEventsState = (AppState: AppState) =>
-  AppState.userEvents;
-export const selectUserEventsArray = (AppState: AppState) => {
-  const state = selectUserEventsState(AppState);
-  return state.allIds.map((id) => state.byIds[id]);
-};
