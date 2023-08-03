@@ -7,9 +7,25 @@ import { addZero } from './add-zero';
  * @returns {string} The date key in the format 'YYYY-MM-DD'.
  */
 
-export const createDateKey = (date: Date) => {
+interface CreateDateKey {
+  year: number;
+  month: number;
+  day: number;
+  hour: number;
+  minute: number;
+  fullTime: string;
+  fullDate: string;
+}
+
+export const createDateKey = (date: Date): CreateDateKey => {
   const year = date.getUTCFullYear();
   const month = date.getUTCMonth() + 1;
-  const day = date.getUTCDay();
-  return `${year}-${addZero(month)}-${addZero(day)}`;
+  const day = date.getUTCDate();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  console.log(date, hour, minute);
+  const fullDate = `${year}-${addZero(month)}-${addZero(day)}`;
+  const fullTime = `${addZero(hour)}:${addZero(minute)}`;
+
+  return { year, month, day, hour, minute, fullDate, fullTime };
 };

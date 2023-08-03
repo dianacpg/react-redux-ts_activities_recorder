@@ -36,14 +36,13 @@ const Calendar = ():  React.ReactElement => {
   return (
     <div className="calendar">
       {!!userEvents.loading && <p>Loading...</p> }
-      {groupedEvents && sortedGroupKeys && sortedGroupKeys.map(dayKey => {
+      {groupedEvents && sortedGroupKeys && sortedGroupKeys.map((dayKey, i) => {
         const events = groupedEvents![dayKey];
         const groupDate = new Date(dayKey);
         const day = groupDate.getDate();
         const month = groupDate.toLocaleDateString(undefined, {month: 'long'})
-
         return(
-          <div className="calendar-day">
+          <div className="calendar-day" key={`calendar-day-${dayKey}-${i}`}>
             <div className="calendar-day-label">
               <span> {day} {month}</span>
             </div>
