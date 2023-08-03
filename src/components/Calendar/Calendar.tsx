@@ -1,43 +1,15 @@
+// React
 import React, { useEffect } from 'react';
+// Styles
 import './Calendar.css';
-import { addZero } from '../../lib/utils';
+// Components
 import EventItem from './EventItem';
-import { UserEvent } from '../../lib/services';
+// Utils
+import { groupEventsByDay } from '../../lib/utils/group-events-by-day';
+// Store
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchUserEvents } from '../store/modules/user-events';
 
-
-export const createDateKey = (date: Date) => {
-  const year = date.getUTCFullYear();
-  const month = date.getUTCMonth() + 1;
-  const day = date.getUTCDay();
-  return `${year}-${addZero(month) }-${addZero(day)}`;
-}
-
-export const groupEventsByDay = (events: UserEvent[]) => {
-  const groups: Record<string, UserEvent[]> = {};
-
-  const addToGroup = (dateKey: string, event: UserEvent) => {
-    if (groups[dateKey] === undefined){
-      groups[dateKey] = [];
-    }
-
-    groups[dateKey].push(event);
-  }
-
-  events.forEach((event) =>{
-    const dateStartKey = createDateKey(new Date(event.dateStart));
-    const dateEndKey = createDateKey(new Date(event.dateEnd));
-
-    addToGroup(dateStartKey, event);
-
-    if (dateEndKey !== dateStartKey){
-      addToGroup(dateEndKey, event);
-    }
-  })
-
-  return groups;
-}
 
 const Calendar = ():  React.ReactElement => {
   const dispatch = useAppDispatch()
@@ -56,9 +28,9 @@ const Calendar = ():  React.ReactElement => {
   }
 
   
-useEffect(() => {
- void dispatch(fetchUserEvents())
-}, [])
+  useEffect(() => {
+  void dispatch(fetchUserEvents())
+  }, [])
 
 
   return (
