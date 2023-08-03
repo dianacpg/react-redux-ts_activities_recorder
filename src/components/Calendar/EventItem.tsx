@@ -1,13 +1,20 @@
+// React
 import React, { useState, useEffect, useRef } from 'react';
+// Store
 import { deleteUserEvent, updateUserEvent } from '../store/modules/user-events';
 import { useDispatch } from 'react-redux';
 import { UserEvent } from '../../lib/services';
+// Utils
+import { createDateKey } from '../../lib/utils/create-date-key';
 
 interface Props {
     event: UserEvent;
 }
 
-const EventItem: React.FC<Props> = ( {event }) => {   
+const EventItem: React.FC<Props> = ( {event }) => { 
+    const startHour = createDateKey( new Date(event.dateStart)).fullTime
+    const endHour = createDateKey( new Date(event.dateStart)).fullTime
+    
     const dispatch = useDispatch();         
     const handleDeleteClick= () => {
         dispatch(deleteUserEvent(event.id));
@@ -41,7 +48,7 @@ const EventItem: React.FC<Props> = ( {event }) => {
     return (
         <div key={event.id} className="calendar-event">
         <div className="calendar-event-info">
-            <div className="calendar-event-time">10:00 -12:00</div>
+            <div className="calendar-event-time">{startHour} - {endHour}</div>
             <div className="calendar-event-title">
                 {editable? (
                     <input 
