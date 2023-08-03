@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
 import './Recorder.css';
-import { addZero } from '../../lib/utils';
+import { addZero } from '../../lib/utils/add-zero';
 import { selectDateStart, startRecorder, stopRecorder } from '../store/modules/recorder';
 import { createUserEvent } from '../store/modules/user-events';
 
