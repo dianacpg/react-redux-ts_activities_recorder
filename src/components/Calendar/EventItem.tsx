@@ -13,7 +13,7 @@ interface Props {
 
 const EventItem: React.FC<Props> = ( {event }) => { 
     const startHour = createDateKey( new Date(event.dateStart)).fullTime
-    const endHour = createDateKey( new Date(event.dateStart)).fullTime
+    const endHour = createDateKey( new Date(event.dateEnd)).fullTime
     
     const dispatch = useDispatch();         
     const handleDeleteClick= () => {
