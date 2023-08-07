@@ -4,25 +4,43 @@ import {
   isPending,
   isFulfilled,
 } from '@reduxjs/toolkit';
-import { AppState } from '../../store';
 
 interface RecorderState {
+  /** Start date of the recorder */
   dateStart: string;
+  /**  Indicates whether an action is in progress. */
   loading?: boolean;
 }
+
+/** INITIAL STATE */
 
 const initialState: RecorderState = {
   dateStart: '',
 };
 
+/** ACTIONS */
+
+/** Start Recorder
+ * @example
+ * dispatch(startRecorder());
+ */
 export const startRecorder = createAction('recorder/start');
+
+/** Stop Recorder
+ * @example
+ * dispatch(stopRecorder());
+ */
 export const stopRecorder = createAction('recorder/stop');
+
+/** REDUCER */
 
 export const recorderReducer = createReducer(initialState, (builder) => {
   builder.addCase(startRecorder, (state) => {
+    // Add new date when start recording
     state.dateStart = new Date().toISOString();
   });
   builder
+    // Remove date when stop recorder
     .addCase(stopRecorder, () => initialState)
     // Loading start for all pending actions
     .addMatcher(isPending, (state) => {
@@ -33,8 +51,3 @@ export const recorderReducer = createReducer(initialState, (builder) => {
       state.loading = false;
     });
 });
-
-export const selectRecorderState = (AppState: AppState) => AppState.recorder;
-
-export const selectDateStart = (AppState: AppState) =>
-  selectRecorderState(AppState).dateStart;

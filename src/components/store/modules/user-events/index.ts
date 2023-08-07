@@ -1,3 +1,4 @@
+// Redux
 import {
   createAsyncThunk,
   createReducer,
@@ -5,19 +6,32 @@ import {
   isPending,
   isFulfilled,
 } from '@reduxjs/toolkit';
-import { AppState } from '../../store';
-import { selectDateStart } from '../recorder';
+// Types
+import { AppState } from '../../';
 import { UserEvent } from '../../../../lib/services';
+// API
 import * as API from '../../../../lib/services';
 
+/** STATE */
 export interface UserEventsState {
+  /** All user events organized by id */
   byIds: Record<UserEvent['id'], UserEvent>;
+  /** An array containing IDs of all user events. */
   allIds: UserEvent['id'][];
+  /** Indicates whether an action is in progress. */
   loading?: boolean;
 }
 
+/** INITIAL STATE */
 const initialState: UserEventsState = { byIds: {}, allIds: [] };
 
+/** ACTIONS */
+
+/**
+ * Fetches user events.
+ * @example
+ * dispatch(fetchUserEvents());
+ */
 export const fetchUserEvents = createAsyncThunk('userEvents/load', async () => {
   try {
     const events = await API.getUserEvents();
@@ -27,6 +41,12 @@ export const fetchUserEvents = createAsyncThunk('userEvents/load', async () => {
   }
 });
 
+/**
+ * Creates new user event .
+ * @example
+ * dispatch(createUserEvent());
+ */
+
 export const createUserEvent = createAsyncThunk<
   UserEvent,
   undefined,
@@ -35,7 +55,7 @@ export const createUserEvent = createAsyncThunk<
   }
 >('userEvents/create', async (_, { getState }) => {
   try {
-    const dateStart = selectDateStart(getState());
+    const dateStart = getState().recorder.dateStart;
     const event: Omit<UserEvent, 'id'> = {
       title: 'No name',
       dateStart,
@@ -50,6 +70,12 @@ export const createUserEvent = createAsyncThunk<
   }
 });
 
+/**
+ * Deletes user event by its ID.
+ * @example
+ * dispatch(deleteUserEvent(event.id));
+ */
+
 export const deleteUserEvent = createAsyncThunk(
   'userEvents/delete',
   async (id: UserEvent['id']) => {
@@ -63,6 +89,15 @@ export const deleteUserEvent = createAsyncThunk(
   }
 );
 
+/**
+ * Updates user event.
+ * @example
+ * dispatch(updateUserEvent({
+ * ...event,
+ * title
+ * }));
+ */
+
 export const updateUserEvent = createAsyncThunk(
   'userEvents/update',
   async (event: UserEvent) => {
@@ -70,6 +105,8 @@ export const updateUserEvent = createAsyncThunk(
     return updatedEvent;
   }
 );
+
+/** REDUCER */
 
 export const userEventsReducer = createReducer(initialState, (builder) => {
   builder
