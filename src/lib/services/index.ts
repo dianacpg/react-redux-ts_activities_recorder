@@ -5,6 +5,11 @@ export interface UserEvent {
   dateEnd: string;
 }
 
+export interface UpdateUserEventDto {
+  id: UserEvent['id'];
+  dto: Omit<UserEvent, 'id'>;
+}
+
 // Example API base URL
 const API_BASE_URL = 'http://localhost:3001';
 
@@ -32,13 +37,16 @@ export const createUserEvent = async (
 };
 
 // Function to update an existing user event
-export const updateUserEvent = async (event: UserEvent): Promise<UserEvent> => {
-  const response = await fetch(`${API_BASE_URL}/events/${event.id}`, {
+export const updateUserEvent = async ({
+  id,
+  dto,
+}: UpdateUserEventDto): Promise<UserEvent> => {
+  const response = await fetch(`${API_BASE_URL}/events/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(event),
+    body: JSON.stringify(dto),
   });
 
   const updatedEvent: UserEvent = await response.json();

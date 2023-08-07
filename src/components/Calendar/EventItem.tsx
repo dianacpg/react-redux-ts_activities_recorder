@@ -36,10 +36,11 @@ const EventItem: React.FC<Props> = ( {event }) => {
         setTitle(e.target.value);
     }
     const handleBlur = () => {
+
         if (title !== event.title) {
-            dispatch(updateUserEvent({
-                ...event,
-                title
+            const { id, ...updatedEvent } = event;
+
+            dispatch(updateUserEvent({ id, dto: { ...updatedEvent, title }
             }));
         }
         setEditable(false);
