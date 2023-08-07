@@ -90,18 +90,17 @@ export const deleteUserEvent = createAsyncThunk(
 );
 
 /**
- * Updates user event.
+ * Updates user event by its id.
  * @example
  * dispatch(updateUserEvent({
- * ...event,
- * title
+ * id, dto
  * }));
  */
 
 export const updateUserEvent = createAsyncThunk(
   'userEvents/update',
-  async (event: UserEvent) => {
-    const updatedEvent = await API.updateUserEvent(event);
+  async ({ id, dto }: API.UpdateUserEventDto) => {
+    const updatedEvent = await API.updateUserEvent({ id, dto });
     return updatedEvent;
   }
 );
