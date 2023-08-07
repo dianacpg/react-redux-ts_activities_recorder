@@ -1,14 +1,15 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import  { useRef, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import cx from 'classnames';
 import './Recorder.css';
 import { addZero } from '../../lib/utils/add-zero';
-import { selectDateStart, startRecorder, stopRecorder } from '../store/modules/recorder';
+import { startRecorder, stopRecorder } from '../store/modules/recorder';
 import { createUserEvent } from '../store/modules/user-events';
+import { useAppSelector } from '../store/hooks';
 
 const Recorder = () => {
   const dispatch = useDispatch();
-  const dateStart = useSelector(selectDateStart);
+  const dateStart = useAppSelector(state => state.recorder.dateStart);
   const started = dateStart !== '';
   let interval = useRef<number>(0);
   const [, setCount] = useState<number>(0);

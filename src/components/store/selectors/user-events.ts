@@ -1,27 +1,26 @@
-// Store
-import { AppState } from '../store';
+// Types
+import { AppState } from '../';
 import { UserEvent } from '../../../lib/services';
+// Utils
 import { groupEventsByDay } from '../../../lib/utils/group-events-by-day';
 
 export type GroupedEvents = Record<string, UserEvent[]>;
 
 export interface GroupedEventsData {
+  /** Grouped user events organized by date. */
   groupedEvents: GroupedEvents | undefined;
+  /** Optional array of strings representing sorted group keys (dates) from most recent to least recent. */
   sortedGroupKeys?: string[];
 }
 
 /**
- * Selects and returns grouped user events by the same day of the month and
- * sorted days of the month.
+ * Selects and returns grouped user events data from the application state.
  *
- * @param {AppState} state - The application state object.
- * @returns {GroupedEventsData | undefined} - An object containing grouped user events and sorted group keys, if available.
+ * @param state - The application state object.
+ * @returns  An object containing grouped user events and sorted group keys, if available.
  *
  * @example
- * // Usage within Redux mapStateToProps or similar:
- * const mapStateToProps = (state) => {
- *   const events = useSelector(selectGroupedEvents);
- *
+ * const events = useSelector(selectGroupedEvents);
  */
 
 export const selectGroupedEvents = (
