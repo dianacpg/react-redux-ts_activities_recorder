@@ -1,8 +1,8 @@
 // Redux
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 // Modules
-import { recorderReducer } from './modules/recorder';
-import { userEventsReducer } from './modules/user-events';
+import { recorderReducer } from "./modules/recorder";
+import { userEventsReducer } from "./modules/user-events";
 
 /**
  * Root reducer object that combines all the individual reducers.

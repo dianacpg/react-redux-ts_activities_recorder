@@ -1,6 +1,6 @@
-import { GroupedEvents } from '../../store/selectors/user-events';
-import { UserEvent } from '../services';
-import { createDateKey } from './create-date-key';
+import { GroupedEvents } from "../../store/selectors/user-events";
+import { UserEvent } from "../services";
+import { createDateKey } from "./create-date-key";
 
 /**
  * Adds an event to the group corresponding to the given date key.
@@ -11,11 +11,7 @@ import { createDateKey } from './create-date-key';
  */
 
 // Adds an event to the group corresponding to the given date key.
-const addToGroup = (
-  dateKey: string,
-  event: UserEvent,
-  groups: GroupedEvents
-) => {
+const addToGroup = (dateKey: string, event: UserEvent, groups: GroupedEvents) => {
   if (groups[dateKey] === undefined) {
     groups[dateKey] = [];
   }
@@ -30,9 +26,7 @@ const addToGroup = (
  * @returns {GroupedEvents} An object with date keys as properties and arrays of UserEvent objects as values.
  */
 
-export const groupEventsByDay = (
-  events: UserEvent[]
-): Record<string, UserEvent[]> => {
+export const groupEventsByDay = (events: UserEvent[]): Record<string, UserEvent[]> => {
   const groups: GroupedEvents = {};
 
   events.forEach((event) => {

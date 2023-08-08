@@ -6,12 +6,12 @@ export interface UserEvent {
 }
 
 export interface UpdateUserEventDto {
-  id: UserEvent['id'];
-  dto: Omit<UserEvent, 'id'>;
+  id: UserEvent["id"];
+  dto: Omit<UserEvent, "id">;
 }
 
 // Example API base URL
-const API_BASE_URL = 'http://localhost:3001';
+const API_BASE_URL = "http://localhost:3001";
 
 // Function to fetch user events
 export const getUserEvents = async (): Promise<UserEvent[]> => {
@@ -21,13 +21,11 @@ export const getUserEvents = async (): Promise<UserEvent[]> => {
 };
 
 // Function to create a new user event
-export const createUserEvent = async (
-  dto: Omit<UserEvent, 'id'>
-): Promise<UserEvent> => {
+export const createUserEvent = async (dto: Omit<UserEvent, "id">): Promise<UserEvent> => {
   const response = await fetch(`${API_BASE_URL}/events`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(dto),
   });
@@ -37,14 +35,11 @@ export const createUserEvent = async (
 };
 
 // Function to update an existing user event
-export const updateUserEvent = async ({
-  id,
-  dto,
-}: UpdateUserEventDto): Promise<UserEvent> => {
+export const updateUserEvent = async ({ id, dto }: UpdateUserEventDto): Promise<UserEvent> => {
   const response = await fetch(`${API_BASE_URL}/events/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(dto),
   });
@@ -56,6 +51,6 @@ export const updateUserEvent = async ({
 // Function to delete a user event
 export const deleteUserEvent = async (id: number): Promise<void> => {
   await fetch(`${API_BASE_URL}/events/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
   });
 };

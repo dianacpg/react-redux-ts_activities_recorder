@@ -5,5 +5,4 @@
  * @returns The number with a leading zero if it is a single-digit number; otherwise, returns the number as is.
  */
 
-export const addZero = (num: number): string =>
-  num < 10 ? `0${num}` : `${num}`;
+export const addZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
