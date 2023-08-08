@@ -11,7 +11,7 @@ const Recorder = () => {
   const dispatch = useDispatch();
   const dateStart = useAppSelector((state) => state.recorder.dateStart);
   const started = dateStart !== "";
-  let interval = useRef<number>(0);
+  const interval = useRef<number>(0);
   const [, setCount] = useState<number>(0);
 
   const handleClick = () => {
