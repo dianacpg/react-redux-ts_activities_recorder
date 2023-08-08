@@ -1,7 +1,7 @@
 // Redux
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 // Types
-import { AppDispatch, AppState } from '.';
+import { AppDispatch, AppState } from ".";
 
 /**
  * Custom hook to select state from the Redux store with TypeScript typings.

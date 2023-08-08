@@ -1,8 +1,8 @@
 // Types
-import { AppState } from '..';
-import { UserEvent } from '../../lib/services';
+import { AppState } from "..";
+import { UserEvent } from "../../lib/services";
 // Utils
-import { groupEventsByDay } from '../../lib/utils/group-events-by-day';
+import { groupEventsByDay } from "../../lib/utils/group-events-by-day";
 
 export type GroupedEvents = Record<string, UserEvent[]>;
 
@@ -23,12 +23,8 @@ export interface GroupedEventsData {
  * const events = useSelector(selectGroupedEvents);
  */
 
-export const selectGroupedEvents = (
-  state: AppState
-): GroupedEventsData | undefined => {
-  const events = state.userEvents.allIds.map(
-    (id) => state.userEvents.byIds[id]
-  );
+export const selectGroupedEvents = (state: AppState): GroupedEventsData | undefined => {
+  const events = state.userEvents.allIds.map((id) => state.userEvents.byIds[id]);
 
   let groupedEvents: GroupedEvents | undefined;
   let sortedGroupKeys: string[] | undefined;

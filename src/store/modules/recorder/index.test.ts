@@ -1,8 +1,8 @@
-import { startRecorder, stopRecorder, recorderReducer } from '.';
+import { startRecorder, stopRecorder, recorderReducer } from ".";
 
-describe('Recorder module', () => {
+describe("Recorder module", () => {
   const initialState = {
-    dateStart: 'some date',
+    dateStart: "some date",
   };
 
   it(`should add new date when start recorder`, () => {
@@ -19,6 +19,6 @@ describe('Recorder module', () => {
     const action = stopRecorder();
     const newState = recorderReducer(initialState, action);
 
-    expect(newState.dateStart).toEqual('');
+    expect(newState.dateStart).toEqual("");
   });
 });

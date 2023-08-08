@@ -1,9 +1,4 @@
-import {
-  createAction,
-  createReducer,
-  isPending,
-  isFulfilled,
-} from '@reduxjs/toolkit';
+import { createAction, createReducer, isPending, isFulfilled } from "@reduxjs/toolkit";
 
 interface RecorderState {
   /** Start date of the recorder */
@@ -15,7 +10,7 @@ interface RecorderState {
 /** INITIAL STATE */
 
 export const initialState: RecorderState = {
-  dateStart: '',
+  dateStart: "",
 };
 
 /** ACTIONS */
@@ -24,13 +19,13 @@ export const initialState: RecorderState = {
  * @example
  * dispatch(startRecorder());
  */
-export const startRecorder = createAction('recorder/start');
+export const startRecorder = createAction("recorder/start");
 
 /** Stop Recorder
  * @example
  * dispatch(stopRecorder());
  */
-export const stopRecorder = createAction('recorder/stop');
+export const stopRecorder = createAction("recorder/stop");
 
 /** REDUCER */
 

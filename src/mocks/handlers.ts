@@ -1,7 +1,7 @@
-import { rest } from 'msw';
-import { UserEvent } from '../lib/services';
+import { rest } from "msw";
+import { UserEvent } from "../lib/services";
 
-const API_BASE_URL = 'http://localhost:3001';
+const API_BASE_URL = "http://localhost:3001";
 
 export const handlers = [
   rest.get(`${API_BASE_URL}/events`, async (req, res, ctx) => {
@@ -10,9 +10,9 @@ export const handlers = [
       // Example:
       {
         id: 1,
-        title: 'Event 1',
-        dateStart: '2023-08-04T12:00:00Z',
-        dateEnd: '2023-08-04T14:00:00Z',
+        title: "Event 1",
+        dateStart: "2023-08-04T12:00:00Z",
+        dateEnd: "2023-08-04T14:00:00Z",
       },
     ];
 
@@ -23,7 +23,7 @@ export const handlers = [
     const body = await req.json();
     const newEvent: UserEvent = {
       id: 2, // Mocked ID
-      title: 'New event',
+      title: "New event",
       ...body.dto,
     };
 
@@ -33,9 +33,9 @@ export const handlers = [
   rest.put(`${API_BASE_URL}/events/:id`, async (req, res, ctx) => {
     const updatedEvent: UserEvent = {
       id: 1,
-      title: 'New Event title',
-      dateStart: '2023-08-04T12:00:00Z',
-      dateEnd: '2023-08-04T14:00:00Z',
+      title: "New Event title",
+      dateStart: "2023-08-04T12:00:00Z",
+      dateEnd: "2023-08-04T14:00:00Z",
     };
 
     return res(ctx.json(updatedEvent));
