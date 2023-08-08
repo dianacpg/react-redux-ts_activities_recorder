@@ -1,4 +1,4 @@
-import { startRecorder, stopRecorder, recorderReducer } from './';
+import { startRecorder, stopRecorder, recorderReducer } from '.';
 
 describe('Recorder module', () => {
   const initialState = {

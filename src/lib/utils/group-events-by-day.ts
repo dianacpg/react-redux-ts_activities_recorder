@@ -1,4 +1,4 @@
-import { GroupedEvents } from '../../components/store/selectors/user-events';
+import { GroupedEvents } from '../../store/selectors/user-events';
 import { UserEvent } from '../services';
 import { createDateKey } from './create-date-key';
 
