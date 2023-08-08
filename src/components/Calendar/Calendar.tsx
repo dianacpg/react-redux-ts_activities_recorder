@@ -20,7 +20,7 @@ const Calendar = ():  React.ReactElement => {
   void dispatch(fetchUserEvents())
   }, [])
 
-  if (!events?.groupedEvents && !events?.sortedGroupKeys) return <p>Loading....</p>
+  if (!events?.groupedEvents && !events?.sortedGroupKeys) return <p>Loading...</p>
 
   return (
     <div className="calendar">

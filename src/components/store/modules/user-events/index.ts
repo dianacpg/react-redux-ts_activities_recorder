@@ -23,7 +23,7 @@ export interface UserEventsState {
 }
 
 /** INITIAL STATE */
-const initialState: UserEventsState = { byIds: {}, allIds: [] };
+export const initialState: UserEventsState = { byIds: {}, allIds: [] };
 
 /** ACTIONS */
 
