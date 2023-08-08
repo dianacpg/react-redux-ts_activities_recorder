@@ -14,7 +14,7 @@ interface RecorderState {
 
 /** INITIAL STATE */
 
-const initialState: RecorderState = {
+export const initialState: RecorderState = {
   dateStart: '',
 };
 
