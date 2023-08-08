@@ -1,6 +1,6 @@
 import { startRecorder, stopRecorder, recorderReducer } from './';
 
-describe('recorder module', () => {
+describe('Recorder module', () => {
   const initialState = {
     dateStart: 'some date',
   };
