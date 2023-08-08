@@ -7,10 +7,10 @@ import {
   isFulfilled,
 } from '@reduxjs/toolkit';
 // Types
-import { AppState } from '../../';
-import { UserEvent } from '../../../../lib/services';
+import { AppState } from '../..';
+import { UserEvent } from '../../../lib/services';
 // API
-import * as API from '../../../../lib/services';
+import * as API from '../../../lib/services';
 
 /** STATE */
 export interface UserEventsState {

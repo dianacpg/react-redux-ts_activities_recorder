@@ -1,7 +1,7 @@
-import React from 'react';
 import './App.css';
-import Recorder from '../Recorder';
-import Calendar from '../Calendar';
+import Recorder from './components/recorder';
+import Calendar from './components/calendar';
+
 
 function App() {
   return (

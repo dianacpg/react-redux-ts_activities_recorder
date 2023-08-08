@@ -1,7 +1,7 @@
 // React
 import React, { useState, useEffect, useRef } from 'react';
 // Store
-import { deleteUserEvent, updateUserEvent } from '../store/modules/user-events';
+import { deleteUserEvent, updateUserEvent } from '../../store/modules/user-events';
 import { useDispatch } from 'react-redux';
 import { UserEvent } from '../../lib/services';
 // Utils

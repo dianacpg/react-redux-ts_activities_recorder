@@ -3,11 +3,11 @@ import React, { useEffect } from 'react';
 // Styles
 import './Calendar.css';
 // Components
-import EventItem from './EventItem';
+import EventItem from './../event-item';
 // Store
-import { useAppDispatch } from '../store/hooks';
-import { fetchUserEvents } from '../store/modules/user-events';
-import { selectGroupedEvents } from '../store/selectors/user-events';
+import { useAppDispatch } from '../../store/hooks';
+import { fetchUserEvents } from '../../store/modules/user-events';
+import { selectGroupedEvents } from '../../store/selectors/user-events';
 import { useSelector } from 'react-redux';
 
 

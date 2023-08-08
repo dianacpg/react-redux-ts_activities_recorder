@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import cx from 'classnames';
 import './Recorder.css';
 import { addZero } from '../../lib/utils/add-zero';
-import { startRecorder, stopRecorder } from '../store/modules/recorder';
-import { createUserEvent } from '../store/modules/user-events';
-import { useAppSelector } from '../store/hooks';
+import { startRecorder, stopRecorder } from '../../store/modules/recorder';
+import { createUserEvent } from '../../store/modules/user-events';
+import { useAppSelector } from '../../store/hooks';
 
 const Recorder = () => {
   const dispatch = useDispatch();

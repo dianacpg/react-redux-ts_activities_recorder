@@ -1,8 +1,8 @@
 // Types
-import { AppState } from '../';
-import { UserEvent } from '../../../lib/services';
+import { AppState } from '..';
+import { UserEvent } from '../../lib/services';
 // Utils
-import { groupEventsByDay } from '../../../lib/utils/group-events-by-day';
+import { groupEventsByDay } from '../../lib/utils/group-events-by-day';
 
 export type GroupedEvents = Record<string, UserEvent[]>;
 

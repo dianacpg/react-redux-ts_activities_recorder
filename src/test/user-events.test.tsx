@@ -2,10 +2,10 @@
 import '@testing-library/jest-dom/extend-expect';
 import {  screen, waitFor, fireEvent } from '@testing-library/react';
 // Provider
-import { renderWithProviders } from '../components/store/utils/test-utils'
+import { renderWithProviders } from '../store/utils/test-utils'
 // Components
-import Calendar from '../components/Calendar/Calendar'
-import Recorder from '../components/Recorder/Recorder';
+import Calendar from '../components/calendar/'
+import Recorder from '../components/recorder';
 
 describe('Calendar Integration Test', () => {
 
