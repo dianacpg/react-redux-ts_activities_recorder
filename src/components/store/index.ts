@@ -8,7 +8,7 @@ import { userEventsReducer } from './modules/user-events';
  * Root reducer object that combines all the individual reducers.
  */
 
-const rootReducer = {
+export const rootReducer = {
   recorder: recorderReducer,
   userEvents: userEventsReducer,
 };
