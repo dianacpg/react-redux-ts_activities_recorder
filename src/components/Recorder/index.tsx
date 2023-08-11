@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import cx from "classnames";
-import "./Recorder.css";
+import "./Recorder.scss";
 import { addZero } from "../../lib/utils/add-zero";
 import { startRecorder, stopRecorder } from "../../store/modules/recorder";
 import { createUserEvent } from "../../store/modules/user-events";

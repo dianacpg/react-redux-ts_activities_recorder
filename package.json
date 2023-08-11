@@ -20,13 +20,15 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
+    "sass": "^1.64.2",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint \"src/**/*.{ts,tsx}\" --quiet",
+    "lint:code": "eslint \"src/**/*.{ts,tsx}\" --quiet",
+    "lint:style": "eslint src/ && stylelint \"src/**/*.scss\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "json-server": "json-server --watch json-server/db.json --port 3001",
@@ -51,13 +53,16 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^6.2.1",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "concurrently": "^6.2.1",
     "eslint-config-prettier": "^8.5.0",
     "json-server": "^0.16.3",
     "msw": "^1.2.3",
-    "prettier": "^3.0.1"
+    "prettier": "^3.0.1",
+    "stylelint": "^15.10.2",
+    "stylelint-config-recommended": "^13.0.0",
+    "stylelint-order": "^6.0.3",
+    "stylelint-scss": "^5.1.0"
   }
 }

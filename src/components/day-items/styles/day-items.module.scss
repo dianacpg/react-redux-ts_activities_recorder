@@ -1,0 +1,50 @@
+.day-items {
+  display: grid;
+  border: solid 1px rgb(197, 197, 197);
+  border-radius: 20px;
+  box-sizing: border-box;
+  grid-gap: 10px;
+  grid-template-columns: auto 1fr;
+  margin: 20px;
+
+  &__date {
+    display: flex;
+    align-items: center;
+    color: rgb(236, 89, 53);
+    flex-direction: column;
+    justify-content: center;
+    margin: 40px;
+  }
+
+  &__month {
+    margin: 5px 0;
+  }
+
+  &__day {
+    margin: 0;
+  }
+
+  &__events {
+    display: grid;
+    align-items: center;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    padding: 10px;
+
+    &-button {
+      background-color: rgb(245, 241, 241);
+      border: none;
+      border-radius: 10px;
+      color: rgb(147, 147, 147);
+      cursor: pointer;
+      font-size: 14px;
+      margin: 10px;
+      padding: 10px;
+
+      &:hover {
+        background-color: rgb(237, 235, 235);
+      }
+    }
+  }
+}
