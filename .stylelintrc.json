@@ -4,12 +4,6 @@
   "rules": {
     "max-nesting-depth": 3,
     "selector-max-compound-selectors": 3,
-    "selector-class-pattern": [
-      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
-      {
-        "message": "Selectors should be in lowercase kebab-case"
-      }
-    ],
     "order/properties-order": [
       ["content", "position", "top", "right", "bottom", "left", "display", "float", "clear"],
       {
