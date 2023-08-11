@@ -1,8 +1,12 @@
+// React
+import { ReactElement } from "react";
+// Style
 import "./App.scss";
+// Components
 import Recorder from "./components/recorder";
 import Calendar from "./components/calendar";
 
-function App() {
+function App(): ReactElement {
   return (
     <div className="app">
       <Recorder />
