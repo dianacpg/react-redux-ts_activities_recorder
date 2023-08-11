@@ -1,71 +1,64 @@
 // React
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, ReactElement } from "react";
+// Styles
+import styles from "./styles/event-item.module.scss";
 // Store
-import { deleteUserEvent, updateUserEvent } from "../../store/modules/user-events";
-import { useDispatch } from "react-redux";
 import { UserEvent } from "../../lib/services";
 // Utils
 import { createDateKey } from "../../lib/utils/create-date-key";
 
-interface Props {
+interface EventItemProps {
   event: UserEvent;
+  onDelete: (id: number) => void;
+  onUpdate: (title: string, event: UserEvent) => void;
 }
 
-const EventItem: React.FC<Props> = ({ event }) => {
+const EventItem = ({ event, onDelete, onUpdate }: EventItemProps): ReactElement => {
   const startHour = createDateKey(new Date(event.dateStart)).fullTime;
   const endHour = createDateKey(new Date(event.dateEnd)).fullTime;
-
-  const dispatch = useDispatch();
-  const handleDeleteClick = () => {
-    dispatch(deleteUserEvent(event.id));
-  };
+  const inputRef = useRef<HTMLInputElement>(null);
   const [editable, setEditable] = useState(false);
+  const [title, setTitle] = useState(event.title);
+
   const handleTitleClick = () => {
     setEditable(true);
   };
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
   useEffect(() => {
     if (editable) {
       inputRef.current?.focus();
     }
   }, [editable]);
 
-  const [title, setTitle] = useState(event.title);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-  const handleBlur = () => {
-    if (title !== event.title) {
-      const { id, ...updatedEvent } = event;
-
-      dispatch(updateUserEvent({ id, dto: { ...updatedEvent, title } }));
-    }
-    setEditable(false);
-  };
-
   return (
-    <div key={event.id} className="calendar-event">
-      <div className="calendar-event-info">
-        <div className="calendar-event-time">
+    <div key={event.id} className={styles["event-item"]}>
+      <div className={styles["event-item__info"]}>
+        <div className={styles["event-item__time"]}>
           {startHour} - {endHour}
         </div>
-        <div className="calendar-event-title">
+        <div className={styles["event-item__title"]}>
           {editable ? (
             <input
               type="text"
               ref={inputRef}
               value={title}
               onChange={handleChange}
-              onBlur={handleBlur}
+              onBlur={() => {
+                onUpdate(title, event);
+                setEditable(false);
+              }}
             />
           ) : (
             <span onClick={handleTitleClick}>{event.title}</span>
           )}
         </div>
       </div>
-      <button className="calendar-event-delete-button" onClick={handleDeleteClick}>
-        &times;
+      <button className={styles["event-item__delete-button"]} onClick={() => onDelete(event.id)}>
+        x
       </button>
     </div>
   );

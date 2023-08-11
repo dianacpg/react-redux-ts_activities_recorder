@@ -1,18 +1,29 @@
 // React
-import React, { useEffect } from "react";
-// Styles
-import "./Calendar.css";
+import { ReactElement, useEffect } from "react";
 // Components
-import EventItem from "./../event-item";
+import DayItems from "../day-items";
 // Store
 import { useAppDispatch } from "../../store/hooks";
-import { fetchUserEvents } from "../../store/modules/user-events";
+import { deleteUserEvent, fetchUserEvents, updateUserEvent } from "../../store/modules/user-events";
 import { selectGroupedEvents } from "../../store/selectors/user-events";
 import { useSelector } from "react-redux";
+import { UserEvent } from "../../lib/services";
 
-const Calendar = (): React.ReactElement => {
+const Calendar = (): ReactElement => {
   const dispatch = useAppDispatch();
   const events = useSelector(selectGroupedEvents);
+
+  const handleDeleteEvent = (id: number) => {
+    dispatch(deleteUserEvent(id));
+  };
+
+  const handleUpdateEvent = (title: string, event: UserEvent) => {
+    if (title !== event.title) {
+      const { id, ...updatedEvent } = event;
+
+      dispatch(updateUserEvent({ id, dto: { ...updatedEvent, title } }));
+    }
+  };
 
   useEffect(() => {
     void dispatch(fetchUserEvents());
@@ -23,25 +34,20 @@ const Calendar = (): React.ReactElement => {
   return (
     <div className="calendar">
       {events?.sortedGroupKeys?.map((dayKey, i) => {
-        const dayEvents = events?.groupedEvents![dayKey];
+        const dayEvents = events?.groupedEvents ? events?.groupedEvents[dayKey] : [];
         const groupDate = new Date(dayKey);
         const day = groupDate.getDate();
-        const month = groupDate.toLocaleDateString(undefined, { month: "long" });
+        const month = groupDate.toLocaleDateString(undefined, { month: "short" });
 
         return (
-          <div className="calendar-day" key={`calendar-day-${dayKey}-${i}`}>
-            <div className="calendar-day-label">
-              <span>
-                {" "}
-                {day} {month}
-              </span>
-            </div>
-            <div className="calendar-events">
-              {dayEvents.map((event) => {
-                return <EventItem key={`event_${event.id}`} event={event} />;
-              })}
-            </div>
-          </div>
+          <DayItems
+            key={`day-item-${dayKey}-${i}`}
+            day={day}
+            month={month}
+            events={dayEvents}
+            onDelete={handleDeleteEvent}
+            onUpdate={handleUpdateEvent}
+          />
         );
       })}
     </div>
