@@ -32,7 +32,6 @@ export const groupEventsByDay = (events: UserEvent[]): Record<string, UserEvent[
   events.forEach((event) => {
     const dateStartKey = createDateKey(new Date(event.dateStart)).fullDate;
     const dateEndKey = createDateKey(new Date(event.dateEnd)).fullDate;
-    console.log(dateStartKey);
     addToGroup(dateStartKey, event, groups);
 
     if (dateEndKey !== dateStartKey) {

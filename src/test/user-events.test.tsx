@@ -4,7 +4,7 @@ import { screen, waitFor, fireEvent } from "@testing-library/react";
 // Provider
 import { renderWithProviders } from "../store/utils/test-utils";
 // Components
-import Calendar from "../components/calendar/";
+import Calendar from "../components/calendar";
 import Recorder from "../components/recorder";
 
 describe("Calendar Integration Test", () => {
@@ -65,7 +65,7 @@ describe("Calendar Integration Test", () => {
     expect(await screen.findByText(/Event 1/i)).toBeInTheDocument();
 
     // Find the delete button for the first event
-    const deleteButton = screen.getByRole("button", { name: "×" });
+    const deleteButton = screen.getByRole("button", { name: "x" });
     // Click the delete button
     fireEvent.click(deleteButton);
 

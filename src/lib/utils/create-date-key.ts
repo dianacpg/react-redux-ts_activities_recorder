@@ -23,7 +23,6 @@ export const createDateKey = (date: Date): CreateDateKey => {
   const day = date.getUTCDate();
   const hour = date.getHours();
   const minute = date.getMinutes();
-  console.log(date, hour, minute);
   const fullDate = `${year}-${addZero(month)}-${addZero(day)}`;
   const fullTime = `${addZero(hour)}:${addZero(minute)}`;
 

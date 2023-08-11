@@ -26,8 +26,8 @@ export interface GroupedEventsData {
 export const selectGroupedEvents = (state: AppState): GroupedEventsData | undefined => {
   const events = state.userEvents.allIds.map((id) => state.userEvents.byIds[id]);
 
-  let groupedEvents: GroupedEvents | undefined;
-  let sortedGroupKeys: string[] | undefined;
+  let groupedEvents: GroupedEvents | undefined = undefined;
+  let sortedGroupKeys: string[] | undefined = undefined;
   if (events.length) {
     groupedEvents = groupEventsByDay(events);
     sortedGroupKeys = Object.keys(groupedEvents).sort(
