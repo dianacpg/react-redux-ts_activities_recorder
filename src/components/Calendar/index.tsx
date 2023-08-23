@@ -32,7 +32,7 @@ const Calendar = (): ReactElement => {
   if (!events?.groupedEvents && !events?.sortedGroupKeys) return <p>Loading...</p>;
 
   return (
-    <div className="calendar">
+    <>
       {events?.sortedGroupKeys?.map((dayKey, i) => {
         const dayEvents = events?.groupedEvents ? events?.groupedEvents[dayKey] : [];
         const groupDate = new Date(dayKey);
@@ -50,7 +50,7 @@ const Calendar = (): ReactElement => {
           />
         );
       })}
-    </div>
+    </>
   );
 };
 

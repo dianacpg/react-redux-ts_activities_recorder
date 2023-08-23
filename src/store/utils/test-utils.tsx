@@ -4,7 +4,6 @@ import type { RenderOptions } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
 import type { PreloadedState } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import { initialState as initialRecorderState } from "../modules/recorder";
 import { initialState as initialUserEventsState } from "../modules/user-events";
 
 import store, { AppState, rootReducer } from "..";
@@ -20,7 +19,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
 export function renderWithProviders(
   ui: React.ReactElement,
   {
-    preloadedState = { recorder: initialRecorderState, userEvents: initialUserEventsState },
+    preloadedState = { userEvents: initialUserEventsState },
     // Automatically create a store instance if no store was passed in
     store = configureStore({ reducer: rootReducer, preloadedState }),
     ...renderOptions
