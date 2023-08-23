@@ -4,12 +4,11 @@ import { screen, waitFor, fireEvent } from "@testing-library/react";
 // Provider
 import { renderWithProviders } from "../store/utils/test-utils";
 // Components
-import Calendar from "../components/calendar";
-import Recorder from "../components/recorder";
+import App from "../App";
 
 describe("Calendar Integration Test", () => {
   it("fetches & receives user events", async () => {
-    renderWithProviders(<Calendar />);
+    renderWithProviders(<App />);
 
     // Wait for events to be loaded
     await waitFor(() => screen.getByText("Loading..."));
@@ -19,12 +18,7 @@ describe("Calendar Integration Test", () => {
   });
 
   it("creates a user event on button click", async () => {
-    renderWithProviders(
-      <div>
-        <Recorder />
-        <Calendar />
-      </div>
-    );
+    renderWithProviders(<App />);
 
     // Click the recorder button to start recording
     fireEvent.click(screen.getByRole("button"));
@@ -35,7 +29,7 @@ describe("Calendar Integration Test", () => {
   });
 
   it("updates a user event when changing name", async () => {
-    renderWithProviders(<Calendar />);
+    renderWithProviders(<App />);
 
     // Check if exactly one event with title "Event 1" is rendered
     expect(await screen.findByText(/Event 1/i)).toBeInTheDocument();
@@ -59,7 +53,7 @@ describe("Calendar Integration Test", () => {
   });
 
   it("removes user event", async () => {
-    renderWithProviders(<Calendar />);
+    renderWithProviders(<App />);
 
     // Check if exactly one event with title "Event 1" is rendered
     expect(await screen.findByText(/Event 1/i)).toBeInTheDocument();
