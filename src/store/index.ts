@@ -1,7 +1,6 @@
 // Redux
 import { configureStore } from "@reduxjs/toolkit";
 // Modules
-import { recorderReducer } from "./modules/recorder";
 import { userEventsReducer } from "./modules/user-events";
 
 /**
@@ -9,7 +8,6 @@ import { userEventsReducer } from "./modules/user-events";
  */
 
 export const rootReducer = {
-  recorder: recorderReducer,
   userEvents: userEventsReducer,
 };
 

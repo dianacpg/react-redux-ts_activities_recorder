@@ -7,7 +7,6 @@ import {
   isFulfilled,
 } from "@reduxjs/toolkit";
 // Types
-import { AppState } from "../..";
 import { UserEvent } from "../../../lib/services";
 // API
 import * as API from "../../../lib/services";
@@ -47,28 +46,24 @@ export const fetchUserEvents = createAsyncThunk("userEvents/load", async () => {
  * dispatch(createUserEvent());
  */
 
-export const createUserEvent = createAsyncThunk<
-  UserEvent,
-  undefined,
-  {
-    state: AppState;
-  }
->("userEvents/create", async (_, { getState }) => {
-  try {
-    const dateStart = getState().recorder.dateStart;
-    const event: Omit<UserEvent, "id"> = {
-      title: "No name",
-      dateStart,
-      dateEnd: new Date().toISOString(),
-    };
+export const createUserEvent = createAsyncThunk<UserEvent, { dateStart: string }>(
+  "userEvents/create",
+  async ({ dateStart }) => {
+    try {
+      const event: Omit<UserEvent, "id"> = {
+        title: "No name",
+        dateStart,
+        dateEnd: new Date().toISOString(),
+      };
 
-    const createdEvent = await API.createUserEvent(event);
+      const createdEvent = await API.createUserEvent(event);
 
-    return createdEvent;
-  } catch (e) {
-    throw new Error("Failed to create event.");
+      return createdEvent;
+    } catch (e) {
+      throw new Error("Failed to create event.");
+    }
   }
-});
+);
 
 /**
  * Deletes user event by its ID.
