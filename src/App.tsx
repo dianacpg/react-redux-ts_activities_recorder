@@ -1,7 +1,5 @@
 // React
 import { ReactElement, useEffect } from "react";
-// Style
-import "./App.scss";
 // Components
 import Recorder from "./components/recorder";
 import Calendar from "./components/calendar";
