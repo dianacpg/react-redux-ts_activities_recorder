@@ -1,34 +1,18 @@
 // React
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 // Components
 import DayItems from "../day-items";
 // Store
-import { useAppDispatch } from "../../store/hooks";
-import { deleteUserEvent, fetchUserEvents, updateUserEvent } from "../../store/modules/user-events";
-import { selectGroupedEvents } from "../../store/selectors/user-events";
-import { useSelector } from "react-redux";
+import { GroupedEventsData } from "../../store/selectors/user-events";
 import { UserEvent } from "../../lib/services";
 
-const Calendar = (): ReactElement => {
-  const dispatch = useAppDispatch();
-  const events = useSelector(selectGroupedEvents);
+interface CalendarProps {
+  events: GroupedEventsData | undefined;
+  onDelete: (id: number) => void;
+  onUpdate: (title: string, event: UserEvent) => void;
+}
 
-  const handleDeleteEvent = (id: number) => {
-    dispatch(deleteUserEvent(id));
-  };
-
-  const handleUpdateEvent = (title: string, event: UserEvent) => {
-    if (title !== event.title) {
-      const { id, ...updatedEvent } = event;
-
-      dispatch(updateUserEvent({ id, dto: { ...updatedEvent, title } }));
-    }
-  };
-
-  useEffect(() => {
-    void dispatch(fetchUserEvents());
-  }, []);
-
+const Calendar = ({ events, onDelete, onUpdate }: CalendarProps): ReactElement => {
   if (!events?.groupedEvents && !events?.sortedGroupKeys) return <p>Loading...</p>;
 
   return (
@@ -45,8 +29,8 @@ const Calendar = (): ReactElement => {
             day={day}
             month={month}
             events={dayEvents}
-            onDelete={handleDeleteEvent}
-            onUpdate={handleUpdateEvent}
+            onDelete={onDelete}
+            onUpdate={onUpdate}
           />
         );
       })}
