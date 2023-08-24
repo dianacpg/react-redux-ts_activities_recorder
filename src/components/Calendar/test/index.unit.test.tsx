@@ -1,7 +1,7 @@
 // React testing library
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
-import Calendar from "..";
+import Calendar from "../";
 import { GroupedEventsData } from "../../../store/selectors/user-events";
 
 describe("Calendar", () => {

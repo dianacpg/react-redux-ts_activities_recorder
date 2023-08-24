@@ -1,5 +1,5 @@
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
-import Recorder from "..";
+import Recorder from "../";
 import "@testing-library/jest-dom/extend-expect";
 
 // Mock the formatSeconds function
