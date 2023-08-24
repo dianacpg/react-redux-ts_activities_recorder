@@ -28,6 +28,11 @@ const EventItem = ({ event, onDelete, onUpdate }: EventItemProps): ReactElement 
     setTitle(e.target.value);
   };
 
+  const handleUpdate = () => {
+    onUpdate(title, event);
+    setEditable(false);
+  };
+
   useEffect(() => {
     if (editable) {
       inputRef.current?.focus();
@@ -47,9 +52,11 @@ const EventItem = ({ event, onDelete, onUpdate }: EventItemProps): ReactElement 
               ref={inputRef}
               value={title}
               onChange={handleChange}
-              onBlur={() => {
-                onUpdate(title, event);
-                setEditable(false);
+              onBlur={handleUpdate}
+              onKeyDown={(e) => {
+                if (e.code === "Enter") {
+                  handleUpdate();
+                }
               }}
             />
           ) : (
