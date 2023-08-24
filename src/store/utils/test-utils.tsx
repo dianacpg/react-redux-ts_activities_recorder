@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import { render } from "@testing-library/react";
+import { render, RenderResult } from "@testing-library/react";
 import type { RenderOptions } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
 import type { PreloadedState } from "@reduxjs/toolkit";
@@ -16,6 +16,10 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   store?: typeof store;
 }
 
+type CustomRenderResult = RenderResult & {
+  store: typeof store;
+};
+
 export function renderWithProviders(
   ui: React.ReactElement,
   {
@@ -24,11 +28,16 @@ export function renderWithProviders(
     store = configureStore({ reducer: rootReducer, preloadedState }),
     ...renderOptions
   }: ExtendedRenderOptions = {}
-) {
+): CustomRenderResult {
   function Wrapper({ children }: PropsWithChildren<React.ReactNode>): JSX.Element {
     return <Provider store={store}>{children}</Provider>;
   }
+  const renderResult = render(ui, { wrapper: Wrapper, ...renderOptions });
 
-  // Return an object with the store and all of RTL's query functions
-  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
+  const customResult: CustomRenderResult = {
+    ...renderResult,
+    store,
+  };
+
+  return customResult;
 }
