@@ -44,9 +44,7 @@ const Recorder = ({ onStop }: RecorderProps): ReactElement => {
       intervalId = setInterval(() => {
         const currentTime = Date.now();
         const startTime = new Date(dateStart).getTime();
-        console.log(currentTime, startTime);
         const elapsedSeconds = Math.floor((currentTime - startTime) / 1000);
-        console.log(elapsedSeconds);
         setSeconds(elapsedSeconds);
       }, 1000);
     } else {
