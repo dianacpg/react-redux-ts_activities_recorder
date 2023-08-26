@@ -15,18 +15,18 @@ describe("Calendar", () => {
     },
   };
 
-  const testingComponent = (
-    <Calendar events={mockEvents} onDelete={() => jest.fn()} onUpdate={() => jest.fn()} />
+  const testingComponent = (events: GroupedEventsData | undefined) => (
+    <Calendar events={events} onDelete={() => jest.fn()} onUpdate={() => jest.fn()} />
   );
 
   it("renders loading message when events are undefined", () => {
-    render(<Calendar events={undefined} onDelete={() => jest.fn()} onUpdate={() => jest.fn()} />);
+    render(testingComponent(undefined));
     const loadingMessage = screen.getByText("Loading...");
     expect(loadingMessage).toBeInTheDocument();
   });
 
   it("renders day items when events are provided", () => {
-    render(testingComponent);
+    render(testingComponent(mockEvents));
     const eventTitles = screen.getAllByText(/Event/);
     expect(eventTitles).toHaveLength(2);
   });
