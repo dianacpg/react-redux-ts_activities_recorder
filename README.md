@@ -71,7 +71,7 @@ REACT_APP_API_BASE_URL
 }
 ```
 
-2. In order to be able to POST, PUT and DElETE succesfully in the fake api, you just need to add the following code top of the file `/api/server.js`.
+2. In order to be able to POST, PUT and DELETE successfully in the fake api, you just need to add the following code top of the file `/api/server.js`.
 
 ```
 const fs = require("fs")
