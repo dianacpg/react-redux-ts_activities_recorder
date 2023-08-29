@@ -11,10 +11,11 @@ export interface UpdateUserEventDto {
 }
 
 // Example API base URL
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 // Function to fetch user events
 export const getUserEvents = async (): Promise<UserEvent[]> => {
+  console.log(API_BASE_URL);
   const response = await fetch(`${API_BASE_URL}/events`);
   const data: UserEvent[] = await response.json();
   return data;
