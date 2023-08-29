@@ -11,6 +11,8 @@ export interface GroupedEventsData {
   groupedEvents: GroupedEvents | undefined;
   /** Optional array of strings representing sorted group keys (dates) from most recent to least recent. */
   sortedGroupKeys?: string[];
+  /** Loading state */
+  loading?: boolean;
 }
 
 /**
@@ -25,6 +27,7 @@ export interface GroupedEventsData {
 
 export const selectGroupedEvents = (state: AppState): GroupedEventsData | undefined => {
   const events = state.userEvents.allIds.map((id) => state.userEvents.byIds[id]);
+  const isLoading = state.userEvents.loading;
 
   let groupedEvents: GroupedEvents | undefined = undefined;
   let sortedGroupKeys: string[] | undefined = undefined;
@@ -35,5 +38,5 @@ export const selectGroupedEvents = (state: AppState): GroupedEventsData | undefi
     );
   }
 
-  return { groupedEvents, sortedGroupKeys };
+  return { groupedEvents, sortedGroupKeys, loading: isLoading };
 };

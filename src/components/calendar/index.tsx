@@ -13,8 +13,6 @@ interface CalendarProps {
 }
 
 const Calendar = ({ events, onDelete, onUpdate }: CalendarProps): ReactElement => {
-  if (!events?.groupedEvents && !events?.sortedGroupKeys) return <p>Loading...</p>;
-
   return (
     <>
       {events?.sortedGroupKeys?.map((dayKey, i) => {

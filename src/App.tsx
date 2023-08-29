@@ -14,10 +14,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectGroupedEvents } from "./store/selectors/user-events";
 // Types
 import { UserEvent } from "./lib/services";
+import LoadingSpinner from "./components/loading-spinner";
 
 function App(): ReactElement {
   const dispatch = useDispatch();
   const events = useSelector(selectGroupedEvents);
+  const isLoading = events?.loading;
 
   const handleStopStopwatch = (dateStart: string | undefined) => {
     if (!dateStart) return;
@@ -42,6 +44,7 @@ function App(): ReactElement {
 
   return (
     <div className="app">
+      {isLoading && <LoadingSpinner />}
       <Stopwatch onStop={(dateStart) => handleStopStopwatch(dateStart)} />
       <Calendar
         events={events}
