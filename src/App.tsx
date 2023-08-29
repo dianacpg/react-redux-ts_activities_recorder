@@ -2,7 +2,7 @@
 import { ReactElement, useEffect } from "react";
 // Components
 import Stopwatch from "./components/stopwatch";
-import TimeTable from "./components/time-table";
+import Calendar from "./components/calendar";
 // Store
 import {
   createUserEvent,
@@ -43,7 +43,7 @@ function App(): ReactElement {
   return (
     <div className="app">
       <Stopwatch onStop={(dateStart) => handleStopStopwatch(dateStart)} />
-      <TimeTable
+      <Calendar
         events={events}
         onDelete={(id) => handleDeleteEvent(id)}
         onUpdate={handleUpdateEvent}

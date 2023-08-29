@@ -1,10 +1,10 @@
 // React testing library
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
-import TimeTable from "..";
+import Calendar from "..";
 import { GroupedEventsData } from "../../../store/selectors/user-events";
 
-describe("TimeTable", () => {
+describe("Calendar", () => {
   const mockEvents: GroupedEventsData = {
     sortedGroupKeys: ["2023-08-24"],
     groupedEvents: {
@@ -16,7 +16,7 @@ describe("TimeTable", () => {
   };
 
   const testingComponent = (events: GroupedEventsData | undefined) => (
-    <TimeTable events={events} onDelete={() => jest.fn()} onUpdate={() => jest.fn()} />
+    <Calendar events={events} onDelete={() => jest.fn()} onUpdate={() => jest.fn()} />
   );
 
   it("renders loading message when events are undefined", () => {

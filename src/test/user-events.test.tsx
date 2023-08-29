@@ -7,7 +7,7 @@ import { renderWithProviders } from "../store/utils/test-utils";
 import App from "../App";
 import { server } from "../mocks/server";
 
-describe("TimeTable Integration Test", () => {
+describe("Calendar Integration Test", () => {
   // Start the mock server before running the tests
   beforeAll(() => server.listen());
 
