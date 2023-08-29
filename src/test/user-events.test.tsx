@@ -7,7 +7,7 @@ import { renderWithProviders } from "../store/utils/test-utils";
 import App from "../App";
 import { server } from "../mocks/server";
 
-describe("Calendar Integration Test", () => {
+describe("TimeTable Integration Test", () => {
   // Start the mock server before running the tests
   beforeAll(() => server.listen());
 
@@ -27,9 +27,9 @@ describe("Calendar Integration Test", () => {
   it("creates a user event on button click", async () => {
     renderWithProviders(<App />);
 
-    // Click the recorder button to start recording
+    // Click the Stopwatch button to start recording
     fireEvent.click(screen.getByRole("button"));
-    // Click the recorder button to stop recording
+    // Click the Stopwatch button to stop recording
     fireEvent.click(screen.getByRole("button"));
     // Check if the new event title is rendered
     expect(await screen.findByText(/New event/i)).toBeInTheDocument();

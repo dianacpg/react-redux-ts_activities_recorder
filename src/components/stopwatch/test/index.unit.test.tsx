@@ -1,5 +1,5 @@
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
-import Recorder from "../";
+import Stopwatch from "..";
 import "@testing-library/jest-dom/extend-expect";
 
 // Mock the formatSeconds function
@@ -7,15 +7,15 @@ jest.mock("../../../lib/utils/format-seconds", () => ({
   formatSeconds: (seconds: number) => `mocked:${seconds}`,
 }));
 
-describe("Recorder component", () => {
+describe("Stopwatch component", () => {
   const onStopMock = jest.fn();
-  const testComponent = <Recorder onStop={onStopMock} />;
+  const testComponent = <Stopwatch onStop={onStopMock} />;
 
   it("renders without errors", () => {
     render(testComponent);
-    const recorderButton = screen.getByRole("button");
-    expect(recorderButton).toBeInTheDocument();
-    expect(recorderButton).toHaveClass("recorder-button");
+    const stopwatchButton = screen.getByRole("button");
+    expect(stopwatchButton).toBeInTheDocument();
+    expect(stopwatchButton).toHaveClass("stopwatch-button");
   });
 
   it("starts recording when the button is clicked and stops when clicked again", async () => {

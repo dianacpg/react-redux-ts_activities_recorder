@@ -6,13 +6,13 @@ import DayItems from "../day-items";
 import { GroupedEventsData } from "../../store/selectors/user-events";
 import { UserEvent } from "../../lib/services";
 
-interface CalendarProps {
+interface TimeTableProps {
   events: GroupedEventsData | undefined;
   onDelete: (id: number) => void;
   onUpdate: (title: string, event: UserEvent) => void;
 }
 
-const Calendar = ({ events, onDelete, onUpdate }: CalendarProps): ReactElement => {
+const TimeTable = ({ events, onDelete, onUpdate }: TimeTableProps): ReactElement => {
   if (!events?.groupedEvents && !events?.sortedGroupKeys) return <p>Loading...</p>;
 
   return (
@@ -38,4 +38,4 @@ const Calendar = ({ events, onDelete, onUpdate }: CalendarProps): ReactElement =
   );
 };
 
-export default Calendar;
+export default TimeTable;

@@ -1,4 +1,4 @@
-# Activities Recorder
+# Activities Stopwatch
 
 WIP
 
@@ -25,9 +25,10 @@ WIP
 #### To run this project:
 
 ```
-$ git clone https://github.com/dianacpg/react-redux-ts_activities_recorder.git
+$ git clone https://github.com/dianacpg/react-redux-ts_activities_Stopwatch.git
 $ cd your-project/
 $ npm install
 $ npm run dev
 
 
+```

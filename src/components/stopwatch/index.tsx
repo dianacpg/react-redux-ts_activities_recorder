@@ -1,12 +1,12 @@
 // React
 import { useEffect, useState, ReactElement, useMemo } from "react";
 // Style
-import styles from "./styles/recorder.module.scss";
+import styles from "./styles/stopwatch.module.scss";
 // Utils
 import { formatSeconds } from "../../lib/utils/format-seconds";
 
-interface RecorderProps {
-  /** function to call when stop recorder */
+interface StopwatchProps {
+  /** function to call when stop Stopwatch */
   onStop: (dateStart: string | undefined) => void;
 }
 
@@ -14,10 +14,10 @@ interface RecorderProps {
  * Component that provides recording functionality with a timer.
  */
 
-const Recorder = ({ onStop }: RecorderProps): ReactElement => {
+const Stopwatch = ({ onStop }: StopwatchProps): ReactElement => {
   // Event Start Date
   const [dateStart, setDateStart] = useState<string | undefined>(undefined);
-  // Recorder time
+  // Stopwatch time
   const [seconds, setSeconds] = useState(0);
   // Counter in hh:mm:ss style
   const counterText = useMemo(() => formatSeconds(seconds), [seconds]);
@@ -59,13 +59,13 @@ const Recorder = ({ onStop }: RecorderProps): ReactElement => {
   }, [dateStart]);
 
   return (
-    <div className={`${styles.recorder} ${dateStart ? styles["recorder--started"] : ""}`}>
-      <button onClick={handleToggleRecording} className={styles["recorder-button"]}>
+    <div className={`${styles.stopwatch} ${dateStart ? styles["stopwatch--started"] : ""}`}>
+      <button onClick={handleToggleRecording} className={styles["stopwatch-button"]}>
         <span></span>
       </button>
-      <div className={styles["recorder-counter"]}>{counterText}</div>
+      <div className={styles["stopwatch-counter"]}>{counterText}</div>
     </div>
   );
 };
 
-export default Recorder;
+export default Stopwatch;

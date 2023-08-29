@@ -1,8 +1,8 @@
 // React
 import { ReactElement, useEffect } from "react";
 // Components
-import Recorder from "./components/Recorder";
-import Calendar from "./components/Calendar";
+import Stopwatch from "./components/stopwatch";
+import TimeTable from "./components/time-table";
 // Store
 import {
   createUserEvent,
@@ -19,7 +19,7 @@ function App(): ReactElement {
   const dispatch = useDispatch();
   const events = useSelector(selectGroupedEvents);
 
-  const handleStopRecorder = (dateStart: string | undefined) => {
+  const handleStopStopwatch = (dateStart: string | undefined) => {
     if (!dateStart) return;
     dispatch(createUserEvent({ dateStart }));
   };
@@ -42,8 +42,8 @@ function App(): ReactElement {
 
   return (
     <div className="app">
-      <Recorder onStop={(dateStart) => handleStopRecorder(dateStart)} />
-      <Calendar
+      <Stopwatch onStop={(dateStart) => handleStopStopwatch(dateStart)} />
+      <TimeTable
         events={events}
         onDelete={(id) => handleDeleteEvent(id)}
         onUpdate={handleUpdateEvent}

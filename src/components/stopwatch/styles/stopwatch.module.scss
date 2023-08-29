@@ -1,4 +1,4 @@
-.recorder {
+.stopwatch {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,7 @@
       width: 24px;
     }
 
-    .recorder--started & span {
+    .stopwatch--started & span {
       border-radius: 0;
       height: 22px;
       width: 22px;
@@ -36,7 +36,7 @@
     transition: opacity 0.3s ease-out;
     width: 80px;
 
-    .recorder--started & {
+    .stopwatch--started & {
       opacity: 1;
     }
   }
