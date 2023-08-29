@@ -1,8 +1,8 @@
 // React
 import { ReactElement, useEffect } from "react";
 // Components
-import Recorder from "./components/recorder";
-import Calendar from "./components/calendar";
+import Recorder from "./components/Recorder";
+import Calendar from "./components/Calendar";
 // Store
 import {
   createUserEvent,

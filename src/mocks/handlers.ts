@@ -1,7 +1,7 @@
 import { rest } from "msw";
 import { UserEvent } from "../lib/services";
 
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const handlers = [
   rest.get(`${API_BASE_URL}/events`, async (req, res, ctx) => {
