@@ -31,8 +31,7 @@
     "lint:code": "eslint \"src/**/*.{ts,tsx}\" --quiet",
     "lint:style": "eslint src/ && stylelint \"src/**/*.scss\"",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "concurrently -k \"npm run json-server\" \"npm start\""
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
