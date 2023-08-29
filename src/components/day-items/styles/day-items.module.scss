@@ -1,12 +1,21 @@
 .day-items {
-  display: grid;
+  display: flex;
+  align-items: center;
   border: solid 1px rgb(197, 197, 197);
   border-radius: 20px;
   box-sizing: border-box;
-  grid-gap: 10px;
-  grid-template-columns: auto 1fr;
+  flex-direction: column;
+  gap: 10px;
   margin: 20px;
-  text-align: center;
+  padding: 10px;
+  width: auto;
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: auto 1fr;
+    text-align: center;
+  }
 
   &__date {
     display: flex;
@@ -14,7 +23,11 @@
     color: rgb(236, 89, 53);
     flex-direction: column;
     justify-content: center;
-    margin: 40px;
+    margin: 10px;
+
+    @media screen and (min-width: 768px) {
+      margin: 40px;
+    }
   }
 
   &__month {
@@ -26,12 +39,21 @@
   }
 
   &__events {
-    display: grid;
-    align-items: center;
-    grid-gap: 10px;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
-    padding: 10px;
+    &-container {
+      text-align: center;
+      width: 100%;
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @media screen and (min-width: 768px) {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(3, 1fr);
+      justify-content: center;
+      padding: 10px;
+    }
 
     &-button {
       background-color: rgb(245, 241, 241);

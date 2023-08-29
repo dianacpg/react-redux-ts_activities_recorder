@@ -1,12 +1,24 @@
 .stopwatch {
+  position: fixed;
+  bottom: 0;
   display: flex;
   align-items: center;
+  background-color: rgb(222, 222, 222);
   justify-content: center;
-  margin: 60px 0 40px;
+  padding: 10px 0;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    position: relative;
+    background-color: transparent;
+    margin: 60px 0 40px;
+    padding: 0;
+  }
 
   &-button {
     background: #e3f6f5;
     border: 0;
+    border: 1px solid #bde6e3;
     border-radius: 50%;
     cursor: pointer;
     height: 60px;
