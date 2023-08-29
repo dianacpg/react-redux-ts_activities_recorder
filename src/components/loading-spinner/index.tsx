@@ -1,4 +1,3 @@
-import React from "react";
 // Styles
 import styles from "./styles/loading-spinner.module.scss";
 

@@ -44,13 +44,18 @@ function App(): ReactElement {
 
   return (
     <div className="app">
-      {isLoading && <LoadingSpinner />}
-      <Stopwatch onStop={(dateStart) => handleStopStopwatch(dateStart)} />
-      <Calendar
-        events={events}
-        onDelete={(id) => handleDeleteEvent(id)}
-        onUpdate={handleUpdateEvent}
-      />
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <Stopwatch onStop={(dateStart) => handleStopStopwatch(dateStart)} />
+          <Calendar
+            events={events}
+            onDelete={(id) => handleDeleteEvent(id)}
+            onUpdate={handleUpdateEvent}
+          />
+        </>
+      )}
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import { ReactElement } from "react";
 // Components
 import DayItems from "../day-items";
+import EmptyState from "../empty-state";
 // Store
 import { GroupedEventsData } from "../../store/selectors/user-events";
 import { UserEvent } from "../../lib/services";
@@ -13,6 +14,7 @@ interface CalendarProps {
 }
 
 const Calendar = ({ events, onDelete, onUpdate }: CalendarProps): ReactElement => {
+  if (!events?.groupedEvents) return <EmptyState />;
   return (
     <>
       {events?.sortedGroupKeys?.map((dayKey, i) => {
