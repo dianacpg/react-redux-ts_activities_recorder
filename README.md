@@ -54,7 +54,7 @@ REACT_APP_API_BASE_URL
 
 ### API
 
-1. This app is build with fake json-server deployed in Vercel. You will need to create a new repository following [json-server-vercel]](https://github.com/kitloong/json-server-vercel) instructions.
+1. This app is build with fake json-server deployed in Vercel. You will need to create a new repository and follow [json-server-vercel](https://github.com/kitloong/json-server-vercel) instructions.
 
 - Database json should follow the following structure example:
 
