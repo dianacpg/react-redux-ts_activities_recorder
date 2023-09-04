@@ -1,6 +1,6 @@
 {
-  "short_name": "Activities Timer",
-  "name": "Activities Timer",
+  "short_name": "Activities Recorder",
+  "name": "Activities Recorder",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
