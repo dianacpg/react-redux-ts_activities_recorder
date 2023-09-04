@@ -1,11 +1,11 @@
 .button {
   background-color: rgb(236, 157, 123);
   border: 1px solid rgb(243, 148, 107);
+  border-radius: 5px;
   color: rgb(62, 62, 62);
   cursor: pointer;
   font-size: 14px;
   padding: 10px;
-  border-radius: 5px;
 
   &--ghost {
     appearance: none;

@@ -1,4 +1,4 @@
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Dialog from "..";
 
@@ -28,7 +28,7 @@ describe("Dialog", () => {
 
   it("calls onConfirm when the 'Confirm' button is clicked", () => {
     const { getByTestId } = render(<Dialog {...defaultProps} />);
-    const confirmButton = screen.getByTestId("confirm-dialog");
+    const confirmButton = getByTestId("confirm-dialog");
 
     // Simulate a click on the 'Confirm' button
     fireEvent.click(confirmButton);

@@ -31,9 +31,9 @@ const DayItems = ({ day, month, events, onDelete, onUpdate }: DayItemsProps): Re
       </div>
       <div className={styles["day-items__events-container"]}>
         <div className={styles["day-items__events"]}>
-          {events.slice(0, !isCollapsed ? undefined : initialEventsToShow).map((event) => (
+          {events.slice(0, !isCollapsed ? undefined : initialEventsToShow).map((event, i) => (
             <EventItem
-              key={`event_${event.id}`}
+              key={`event_${event.id}_${i}`}
               event={event}
               onDelete={onDelete}
               onUpdate={onUpdate}
