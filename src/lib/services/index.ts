@@ -3,11 +3,12 @@ export interface UserEvent {
   title: string;
   dateStart: string;
   dateEnd: string;
+  durationMS?: number;
 }
 
 export interface UpdateUserEventDto {
   id: UserEvent["id"];
-  dto: Omit<UserEvent, "id">;
+  dto: Pick<UserEvent, "title">;
 }
 
 // Example API base URL

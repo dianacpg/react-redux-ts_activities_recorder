@@ -50,10 +50,14 @@ export const createUserEvent = createAsyncThunk<UserEvent, { dateStart: string }
   "userEvents/create",
   async ({ dateStart }) => {
     try {
+      const end = new Date();
+      const start = new Date(dateStart);
+
       const event: Omit<UserEvent, "id"> = {
         title: "No name",
         dateStart,
-        dateEnd: new Date().toISOString(),
+        dateEnd: end.toISOString(),
+        durationMS: end.getTime() - start.getTime(),
       };
 
       const createdEvent = await API.createUserEvent(event);
@@ -85,7 +89,7 @@ export const deleteUserEvent = createAsyncThunk(
 );
 
 /**
- * Updates user event by its id.
+ * Updates user event title by its id.
  * @example
  * dispatch(updateUserEvent({
  * id, dto
