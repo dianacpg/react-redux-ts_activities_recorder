@@ -6,19 +6,21 @@ import styles from "./styles/event-item.module.scss";
 import { UserEvent } from "../../lib/services";
 // Utils
 import { createDateKey } from "../../lib/utils/create-date-key";
-
+import Dialog from "../dialog";
+import Button from "../button";
 interface EventItemProps {
   event: UserEvent;
   onDelete: (id: number) => void;
   onUpdate: (title: string, event: UserEvent) => void;
 }
 
-const EventItem = ({ event, onDelete, onUpdate }: EventItemProps): ReactElement => {
+const EventItem = ({ event, onUpdate, onDelete }: EventItemProps): ReactElement => {
   const startHour = createDateKey(new Date(event.dateStart)).fullTime;
   const endHour = createDateKey(new Date(event.dateEnd)).fullTime;
   const inputRef = useRef<HTMLInputElement>(null);
   const [editable, setEditable] = useState(false);
   const [title, setTitle] = useState(event.title);
+  const [showModal, setShowModal] = useState(false);
 
   const handleTitleClick = () => {
     setEditable(true);
@@ -64,9 +66,19 @@ const EventItem = ({ event, onDelete, onUpdate }: EventItemProps): ReactElement 
           )}
         </div>
       </div>
-      <button className={styles["event-item__delete-button"]} onClick={() => onDelete(event.id)}>
+      <Button skin="ghost" onClick={() => setShowModal(true)}>
         x
-      </button>
+      </Button>
+      {showModal && (
+        <Dialog
+          title={`Are you sure you want to delete "${event.title}"?`}
+          onCancel={() => setShowModal(false)}
+          onConfirm={() => {
+            onDelete(event.id);
+            setShowModal(false);
+          }}
+        />
+      )}
     </div>
   );
 };

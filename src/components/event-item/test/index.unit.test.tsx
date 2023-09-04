@@ -18,19 +18,19 @@ const mockElement = (
 
 describe("EventItem", () => {
   it("renders the event title", () => {
-    render(mockElement);
+    const { getByText } = render(mockElement);
 
-    const eventTitle = screen.getByText("Test Event");
+    const eventTitle = getByText("Test Event");
     expect(eventTitle).toBeInTheDocument();
   });
 
   it("allows editing the event title", () => {
-    render(mockElement);
+    const { getByText, getByRole } = render(mockElement);
 
-    const eventTitle = screen.getByText("Test Event");
+    const eventTitle = getByText("Test Event");
     fireEvent.click(eventTitle);
 
-    const inputField = screen.getByRole("textbox") as HTMLInputElement;
+    const inputField = getByRole("textbox") as HTMLInputElement;
     expect(inputField).toBeInTheDocument();
 
     fireEvent.change(inputField, { target: { value: "Updated Title" } });
@@ -38,9 +38,9 @@ describe("EventItem", () => {
   });
 
   it("calls the onUpdate function when title is updated", () => {
-    render(mockElement);
+    const { getByText } = render(mockElement);
 
-    const eventTitle = screen.getByText("Test Event");
+    const eventTitle = getByText("Test Event");
     fireEvent.click(eventTitle);
 
     const inputField = screen.getByRole("textbox");
@@ -50,12 +50,14 @@ describe("EventItem", () => {
     expect(handleUpdateMock).toHaveBeenCalledWith("Updated Title", mockEvent);
   });
 
-  it("calls the onDelete function when delete button is clicked", () => {
-    render(mockElement);
+  it("show dialog when click on delete button", () => {
+    const { getByText } = render(mockElement);
 
-    const deleteButton = screen.getByText("x");
+    const deleteButton = getByText("x");
     fireEvent.click(deleteButton);
 
-    expect(handleDeleteMock).toHaveBeenCalledWith(1);
+    const deleteText = getByText(/Are you sure you want to delete/i);
+
+    expect(deleteText).toBeInTheDocument();
   });
 });
