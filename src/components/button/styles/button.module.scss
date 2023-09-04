@@ -1,0 +1,23 @@
+.button {
+  background-color: rgb(236, 157, 123);
+  border: 1px solid rgb(243, 148, 107);
+  color: rgb(62, 62, 62);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+
+  &--ghost {
+    appearance: none;
+    background: none;
+    border: 0;
+    color: rgb(124, 125, 126);
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 18px;
+    height: 23px;
+    line-height: 20px;
+    margin: 10px;
+    width: 23px;
+  }
+}
