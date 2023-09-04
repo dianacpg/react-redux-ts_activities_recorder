@@ -60,7 +60,11 @@ const Stopwatch = ({ onStop }: StopwatchProps): ReactElement => {
 
   return (
     <div className={`${styles.stopwatch} ${dateStart ? styles["stopwatch--started"] : ""}`}>
-      <button onClick={handleToggleRecording} className={styles["stopwatch-button"]}>
+      <button
+        onClick={handleToggleRecording}
+        className={styles["stopwatch-button"]}
+        data-testid="stopwatch-button"
+      >
         <span></span>
       </button>
       <div className={styles["stopwatch-counter"]}>{counterText}</div>

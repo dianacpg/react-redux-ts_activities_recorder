@@ -1,5 +1,5 @@
 // React testing
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 // Components
 import DayItems from "./../";
@@ -60,41 +60,41 @@ describe("DayItems Component", () => {
   const remainingEvents = mockEvents.slice(3);
 
   test("renders date and month", () => {
-    render(mockComponent);
+    const { getByText } = render(mockComponent);
 
-    expect(screen.getByText("August")).toBeInTheDocument();
-    expect(screen.getByText("10")).toBeInTheDocument();
+    expect(getByText("August")).toBeInTheDocument();
+    expect(getByText("10")).toBeInTheDocument();
   });
 
   test("renders up to 3 events for each day when rendered", () => {
-    render(mockComponent);
+    const { getByText, queryByText } = render(mockComponent);
 
     // Verify that the first 3 events are rendered when collapsed
     firstThreeEvents.forEach((event) => {
-      expect(screen.getByText(event.title)).toBeInTheDocument();
+      expect(getByText(event.title)).toBeInTheDocument();
     });
 
     remainingEvents.forEach((event) => {
-      expect(screen.queryByText(event.title)).not.toBeInTheDocument();
+      expect(queryByText(event.title)).not.toBeInTheDocument();
     });
   });
 
   test("toggles expansion when button is clicked", () => {
-    render(mockComponent);
+    const { getByRole, getByText, queryByText } = render(mockComponent);
 
     // Click the expand button
-    fireEvent.click(screen.getByRole("button", { name: "expand" }));
+    fireEvent.click(getByRole("button", { name: "expand" }));
 
     // Verify that all events are rendered when expanded
     mockEvents.forEach((event) => {
-      expect(screen.getByText(event.title)).toBeInTheDocument();
+      expect(getByText(event.title)).toBeInTheDocument();
     });
 
     // Click the collapse button
-    fireEvent.click(screen.getByRole("button", { name: "collapse" }));
+    fireEvent.click(getByRole("button", { name: "collapse" }));
     // Verify that remaining events are not rendered when collapsed
     remainingEvents.forEach((event) => {
-      expect(screen.queryByText(event.title)).not.toBeInTheDocument();
+      expect(queryByText(event.title)).not.toBeInTheDocument();
     });
   });
 });
