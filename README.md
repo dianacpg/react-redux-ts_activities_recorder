@@ -22,6 +22,7 @@ The Activities Recorder app lets you easily track your activities in real time u
 
 - React (create-react-app);
 - Typescript;
+- Redux
 - SCSS;
 - ESLint;
 - Prettier;
