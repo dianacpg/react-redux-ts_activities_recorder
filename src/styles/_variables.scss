@@ -1,0 +1,34 @@
+$spacing: (
+  "none": 0,
+  "xs": 4px,
+  "s": 8px,
+  "m": 12px,
+  "l": 16px,
+  "xl": 20px,
+  "xxl": 24px,
+);
+
+$colors: (
+  "background": white,
+  "border": rgb(222, 221, 221),
+  "text": #272343,
+  "text-light": rgb(124, 125, 126),
+  "primary": rgb(193, 240, 250),
+  "secondary": rgb(236, 89, 53),
+  "button-primary": rgb(236, 157, 123),
+  "button-secondary": rgb(245, 241, 241),
+  "button-ghost": rgb(124, 125, 126),
+  "overlay": rgba(238, 236, 236, 0.5),
+);
+
+$font-size: (
+  "s": 14px,
+  "m": 18px,
+);
+
+$border-radius: (
+  "xs": 4px,
+  "m": 8px,
+  "l": 12px,
+  "xl": 20px,
+);

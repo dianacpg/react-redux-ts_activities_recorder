@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 // Redux
 import { Provider } from "react-redux";
 // Style
-import "./index.scss";
+import "./styles/index.scss";
 // Components
 import App from "./App";
 // Store

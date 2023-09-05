@@ -1,0 +1,17 @@
+@import "variables";
+
+@function get-spacing($size, $spacing-map: $spacing) {
+  @return map-get($spacing-map, $size);
+}
+
+@function get-color($color, $color-map: $colors) {
+  @return map-get($color-map, $color);
+}
+
+@function get-font-size($size, $font-size-map: $font-size) {
+  @return map-get($font-size-map, $size);
+}
+
+@function get-border-radius($size, $border-radius-map: $border-radius) {
+  @return map-get($border-radius-map, $size);
+}

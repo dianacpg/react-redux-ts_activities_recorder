@@ -1,23 +1,33 @@
+@import "../../../styles/index.scss";
+
 .button {
-  background-color: rgb(236, 157, 123);
-  border: 1px solid rgb(243, 148, 107);
-  border-radius: 5px;
-  color: rgb(62, 62, 62);
+  background-color: get-color("button-primary");
+  border: none;
+  border-radius: get-border-radius("xs");
+  color: get-color("text");
   cursor: pointer;
-  font-size: 14px;
-  padding: 10px;
+  font-size: get-font-size("s");
+  padding: get-spacing("m");
 
   &--ghost {
     appearance: none;
     background: none;
-    border: 0;
-    color: rgb(124, 125, 126);
+    border: none;
+    color: get-color("button-ghost");
     cursor: pointer;
     flex-shrink: 0;
-    font-size: 18px;
-    height: 23px;
-    line-height: 20px;
-    margin: 10px;
-    width: 23px;
+    font-size: get-font-size("m");
+    margin: get-spacing("m");
+  }
+
+  &--secondary {
+    background-color: get-color("button-secondary");
+    border: none;
+    border-radius: get-border-radius("m");
+    color: get-color("text-light");
+    cursor: pointer;
+    font-size: get-font-size("s");
+    margin: get-spacing("m");
+    padding: get-spacing("m");
   }
 }

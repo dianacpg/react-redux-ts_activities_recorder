@@ -1,18 +1,20 @@
+@import "../../../styles/index.scss";
+
 .event-item {
   display: flex;
-  background-color: rgb(193, 240, 250);
-  border-radius: 10px;
+  background-color: get-color("primary");
+  border-radius: get-border-radius("l");
   box-sizing: border-box;
-  margin: 0 15px;
+  margin: 0 get-spacing("l");
   overflow-x: auto;
 
   &__info {
     flex-grow: 1;
-    line-height: 23px;
-    padding: 20px;
+    padding: get-spacing("xl");
   }
 
   &__time {
-    font-size: 14px;
+    font-size: get-font-size("s");
+    padding: get-spacing("s");
   }
 }

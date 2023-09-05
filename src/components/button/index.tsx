@@ -2,12 +2,12 @@
 import styles from "./styles/button.module.scss";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  skin?: "default" | "ghost";
+  skin?: "default" | "secondary" | "ghost";
   children: React.ReactNode;
 }
 
 const Button = ({ skin = "default", children, ...props }: ButtonProps) => {
-  const buttonClassName = skin === "ghost" ? styles["button--ghost"] : styles["button"];
+  const buttonClassName = skin !== "default" ? styles[`button--${skin}`] : styles["button"];
   return (
     <button className={buttonClassName} {...props}>
       {children}

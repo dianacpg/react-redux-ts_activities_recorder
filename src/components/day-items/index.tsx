@@ -6,6 +6,7 @@ import styles from "./styles/day-items.module.scss";
 import EventItem from "../event-item";
 // Store
 import { UserEvent } from "../../lib/services";
+import Button from "../button";
 
 interface DayItemsProps {
   month: string;
@@ -41,13 +42,9 @@ const DayItems = ({ day, month, events, onDelete, onUpdate }: DayItemsProps): Re
           ))}
         </div>
         {events.length > initialEventsToShow && (
-          <button
-            name="expand-items"
-            className={styles["day-items__events-button"]}
-            onClick={toggleExpansion}
-          >
+          <Button name="expand-items" skin="secondary" onClick={toggleExpansion}>
             {isCollapsed ? "expand" : "collapse"}
-          </button>
+          </Button>
         )}
       </div>
     </div>
