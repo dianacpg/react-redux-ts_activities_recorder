@@ -1,5 +1,9 @@
 # Activities Recorder
 
+### Note
+
+Project migrated to Vite. You can check it [here:](https://github.com/dianacpg/activities-recorder/)
+
 ## Description
 
 The Activities Recorder app lets you easily track your activities in real time using a stopwatch. It also has a calendar that shows all your recorded activities by day, along with their start and end times. You can edit or delete recorded activities whenever you need to.
